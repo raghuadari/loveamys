@@ -20,7 +20,7 @@ const menuCategories = [
   },
   {
     id: 'bombolinis',
-    label: 'Bombolinis (Limited stock!)',
+    label: 'Bombolinis',
     items: [
       { id: 'bombolini-dark', name: 'Dark Chocolate Bombolini', dietary: 'Eggless' },
       { id: 'bombolini-milk', name: 'Milk Chocolate Bombolini', dietary: 'Eggless' },
@@ -285,12 +285,7 @@ export default function MenuSection() {
                     <p className="text-sm text-gray-500 mb-4">
                       {item.dietary}
                     </p>
-                    {item.id.includes('bombolini') && (
-                      <p className="text-sm text-pink-600 font-medium mb-4">
-                        Limited stock available!
-                      </p>
-                    )}
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-pink-600">
                       Click to {isSelected ? 'deselect' : 'select'} item
                     </p>
                   </div>
