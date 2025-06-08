@@ -274,18 +274,18 @@ export default function MenuSection() {
                   onClick={() => toggleItemSelection(item)}
                 >
                   <div className="p-6">
-                    <div className="flex justify-between items-start mb-2">
+                    <div className="flex flex-col items-center text-center mb-2">
                       <h3 className="text-xl font-semibold text-gray-900">
                         {item.name}
                       </h3>
                       {isSelected && (
-                        <span className="text-green-500 text-xl">✓</span>
+                        <span className="text-green-500 text-xl mt-2">✓</span>
                       )}
                     </div>
-                    <p className="text-sm text-gray-500 mb-4">
+                    <p className="text-sm text-gray-500 mb-4 text-center">
                       {item.dietary}
                     </p>
-                    <p className="text-sm text-pink-600">
+                    <p className="text-sm text-pink-600 text-center">
                       Click to {isSelected ? 'deselect' : 'select'} item
                     </p>
                   </div>
