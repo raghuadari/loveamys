@@ -4,8 +4,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/loveamys' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/loveamys/' : '',
+  basePath: '/loveamys',
+  assetPrefix: '/loveamys/',
 };
 
 module.exports = nextConfig; 
