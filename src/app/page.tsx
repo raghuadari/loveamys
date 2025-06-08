@@ -110,9 +110,14 @@ export default function Home() {
                 </p>
               </div>
               <div className="bg-pink-50 rounded-2xl p-8">
-                <div className="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg flex items-center justify-center text-4xl">
-                  🎂
-                </div>
+                <Image
+                  src="/images/amy-ghibli.png"
+                  alt="Amy's Ghibli Picture"
+                  width={400}
+                  height={300}
+                  className="rounded-lg w-full h-auto"
+                  priority
+                />
               </div>
             </div>
           </motion.div>
