@@ -4,6 +4,14 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 
+interface MenuItem {
+  id: string;
+  name: string;
+  dietary: string;
+  category: string;
+  quantity: number;
+}
+
 const menuCategories = [
   {
     id: 'all',
@@ -141,7 +149,7 @@ const menuCategories = [
 export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState(menuCategories[0].id);
   const [showEgglessOnly, setShowEgglessOnly] = useState(false);
-  const [selectedItems, setSelectedItems] = useState<Array<{ id: string; name: string; category: string }>>([]);
+  const [selectedItems, setSelectedItems] = useState<MenuItem[]>([]);
 
   // Get all items from all categories
   const allItems = menuCategories
@@ -153,33 +161,47 @@ export default function MenuSection() {
 
   // Filter items based on category and eggless preference
   const getFilteredItems = () => {
-    const categoryItems = menuCategories
-      .find((category) => category.id === activeCategory)
-      ?.items || [];
+    const allItems = menuCategories.flatMap(category =>
+      category.items.map(item => ({
+        ...item,
+        category: category.label,
+        quantity: 1
+      }))
+    );
 
-    return showEgglessOnly
-      ? categoryItems.filter(item => item.dietary === 'Eggless')
-      : categoryItems;
+    return allItems.filter(item => {
+      const matchesCategory = activeCategory === 'all' || item.category === menuCategories.find(cat => cat.id === activeCategory)?.label;
+      const matchesDietary = !showEgglessOnly || item.dietary === 'Eggless';
+      return matchesCategory && matchesDietary;
+    });
   };
 
   const currentCategory = menuCategories.find((category) => category.id === activeCategory);
 
-  const toggleItemSelection = (item: { id: string; name: string }) => {
-    setSelectedItems(prev => {
-      const isSelected = prev.some(selected => selected.id === item.id);
-      if (isSelected) {
-        return prev.filter(selected => selected.id !== item.id);
-      } else {
-        return [...prev, { ...item, category: currentCategory?.label || '' }];
-      }
-    });
+  const toggleItemSelection = (item: MenuItem) => {
+    const existingItemIndex = selectedItems.findIndex(selected => selected.id === item.id);
+    
+    if (existingItemIndex === -1) {
+      // Add new item with quantity 1
+      setSelectedItems([...selectedItems, { ...item, quantity: 1 }]);
+    } else {
+      // Remove item if it exists
+      setSelectedItems(selectedItems.filter(selected => selected.id !== item.id));
+    }
+  };
+
+  const updateItemQuantity = (itemId: string, newQuantity: number) => {
+    if (newQuantity < 1) return;
+    setSelectedItems(selectedItems.map(item => 
+      item.id === itemId ? { ...item, quantity: newQuantity } : item
+    ));
   };
 
   const handleOrderClick = () => {
     if (selectedItems.length === 0) return;
 
     const message = `Hi! I'd like to place an order for:\n\n${selectedItems
-      .map(item => `• ${item.name} (${item.category})`)
+      .map(item => `• ${item.name} (${item.category}) - Quantity: ${item.quantity}`)
       .join('\n')}\n\nPlease let me know the availability and details.`;
     
     const encodedMessage = encodeURIComponent(message);
@@ -260,7 +282,8 @@ export default function MenuSection() {
           {/* Menu Items Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {getFilteredItems().map((item) => {
-              const isSelected = selectedItems.some(selected => selected.id === item.id);
+              const selectedItem = selectedItems.find(selected => selected.id === item.id);
+              const isSelected = !!selectedItem;
               return (
                 <motion.div
                   key={item.id}
@@ -285,6 +308,28 @@ export default function MenuSection() {
                     <p className="text-sm text-gray-500 mb-4 text-center">
                       {item.dietary}
                     </p>
+                    {isSelected && (
+                      <div 
+                        className="flex items-center justify-center gap-3 mb-4"
+                        onClick={(e) => e.stopPropagation()} // Prevent item deselection when clicking quantity controls
+                      >
+                        <button
+                          onClick={() => updateItemQuantity(item.id, (selectedItem?.quantity || 1) - 1)}
+                          className="w-8 h-8 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-colors"
+                        >
+                          -
+                        </button>
+                        <span className="text-lg font-medium text-gray-900">
+                          {selectedItem?.quantity || 1}
+                        </span>
+                        <button
+                          onClick={() => updateItemQuantity(item.id, (selectedItem?.quantity || 1) + 1)}
+                          className="w-8 h-8 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-colors"
+                        >
+                          +
+                        </button>
+                      </div>
+                    )}
                     <p className="text-sm text-pink-600 text-center">
                       Click to {isSelected ? 'deselect' : 'select'} item
                     </p>
@@ -310,7 +355,7 @@ export default function MenuSection() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <span className="text-xl">📱</span>
-                  Order {selectedItems.length} Item{selectedItems.length > 1 ? 's' : ''} on WhatsApp
+                  Order {selectedItems.reduce((total, item) => total + item.quantity, 0)} Item{selectedItems.reduce((total, item) => total + item.quantity, 0) > 1 ? 's' : ''} on WhatsApp
                 </motion.button>
               </motion.div>
             )}
