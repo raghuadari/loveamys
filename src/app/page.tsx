@@ -1,8 +1,15 @@
 'use client';
 
 import Navigation from '@/components/Navigation';
+import MenuSection from '@/components/MenuSection';
+import GallerySection from '@/components/GallerySection';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import OrderForm from '@/components/OrderForm';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { IconType } from 'react-icons';
+import { FaInstagram, FaFacebook, FaYoutube, FaTwitter, FaWhatsapp } from 'react-icons/fa';
+import Image from 'next/image';
 
 export default function Home() {
   const [heroRef, heroInView] = useInView({
@@ -23,12 +30,47 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="text-center px-4"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
-            Love Amy's Bakery
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8">
-            Freshly baked with love, just for you 💖
-          </p>
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={heroInView ? { scale: 1, opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-8"
+          >
+            <Image
+              src="/images/loveamys-logo.png"
+              alt="Love Amy's Bakery Logo"
+              width={300}
+              height={100}
+              className="mx-auto"
+              priority
+            />
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-4xl md:text-6xl font-bold text-gray-900 mb-4"
+          >
+            Freshly baked with love
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-xl md:text-2xl text-gray-600 mb-4"
+          >
+            Just for you 💖
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="mb-8"
+          >
+            <p className="text-lg text-pink-600 font-medium">
+              ✨ All items are made fresh to order with a minimum 24-hour notice ✨
+            </p>
+          </motion.div>
           <motion.a
             href="#menu"
             whileHover={{ scale: 1.05 }}
@@ -53,98 +95,35 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
               About Us
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Welcome to Love Amy's Bakery, where passion meets pastry! We're a home-based bakery
-              dedicated to creating delicious treats that bring joy to your special moments.
-              Every item is baked with love and the finest ingredients, just for you.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Menu Section */}
-      <section id="menu" className="py-20 bg-pink-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-              Our Menu
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Menu items will be added here */}
-              <p className="text-gray-600">Menu items coming soon...</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div className="text-left">
+                <p className="text-lg text-gray-600 mb-6">
+                  Welcome to Love Amy's Bakery, where passion meets pastry! We're a home-based bakery
+                  dedicated to creating delicious treats that bring joy to your special moments.
+                </p>
+                <p className="text-lg text-gray-600 mb-6">
+                  Every item is baked with love and the finest ingredients, just for you. Our journey
+                  began with a simple dream: to share the joy of homemade baked goods with our community.
+                </p>
+                <p className="text-lg text-gray-600">
+                  Whether you're celebrating a special occasion or just treating yourself, we're here
+                  to make your day a little sweeter.
+                </p>
+              </div>
+              <div className="bg-pink-50 rounded-2xl p-8">
+                <div className="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg flex items-center justify-center text-4xl">
+                  🎂
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section id="gallery" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-              Gallery
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {/* Gallery items will be added here */}
-              <p className="text-gray-600">Gallery items coming soon...</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-pink-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-              What Our Customers Say
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Testimonials will be added here */}
-              <p className="text-gray-600">Testimonials coming soon...</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Order Section */}
-      <section id="order" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-              Place Your Order
-            </h2>
-            <div className="max-w-2xl mx-auto">
-              {/* Order form will be added here */}
-              <p className="text-gray-600">Order form coming soon...</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <MenuSection />
+      <GallerySection />
+      <TestimonialsSection />
+      <OrderForm />
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
@@ -159,15 +138,57 @@ export default function Home() {
             <div>
               <h3 className="text-xl font-bold mb-4">Contact Us</h3>
               <p className="text-gray-400">
-                Email: contact@loveamys.com<br />
-                Phone: (555) 123-4567
+                Email: loveamys.bakes@gmail.com<br />
+                Phone: +91 90598 88990<br />
+                Hours: Tue-Sun 11am-5pm
               </p>
             </div>
             <div>
               <h3 className="text-xl font-bold mb-4">Follow Us</h3>
-              <div className="flex space-x-4">
-                {/* Social media links will be added here */}
-                <p className="text-gray-400">Social media links coming soon...</p>
+              <div className="flex space-x-6">
+                {[
+                  {
+                    Icon: FaInstagram,
+                    href: 'https://instagram.com/loveamys.bakes',
+                    label: 'Instagram'
+                  },
+                  {
+                    Icon: FaFacebook,
+                    href: 'https://facebook.com/loveamys.bakes',
+                    label: 'Facebook'
+                  },
+                  {
+                    Icon: FaYoutube,
+                    href: 'https://youtube.com/@loveamysbakes',
+                    label: 'YouTube'
+                  },
+                  {
+                    Icon: FaTwitter,
+                    href: 'https://twitter.com/loveamysbakes',
+                    label: 'Twitter'
+                  },
+                  {
+                    Icon: FaWhatsapp,
+                    href: 'https://wa.me/919059888990',
+                    label: 'WhatsApp'
+                  }
+                ].map(({ Icon, href, label }, index) => (
+                  <motion.a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-pink-600 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    aria-label={label}
+                  >
+                    <Icon className="w-6 h-6" />
+                  </motion.a>
+                ))}
               </div>
             </div>
           </div>
