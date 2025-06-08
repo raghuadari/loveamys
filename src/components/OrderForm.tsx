@@ -8,59 +8,59 @@ const menuCategories = [
     id: 'buns',
     label: 'Buns',
     items: [
-      { id: 'korean-cream-cheese', name: 'Korean Cream Cheese Buns', price: '₹120', dietary: 'Eggless' },
-      { id: 'cream-buns', name: 'Cream Buns', price: '₹100', dietary: 'Eggless' }
+      { id: 'korean-cream-cheese', name: 'Korean Cream Cheese Buns', dietary: 'Eggless' },
+      { id: 'cream-buns', name: 'Cream Buns', dietary: 'Eggless' }
     ]
   },
   {
     id: 'bombolinis',
     label: 'Bombolinis (Limited stock!)',
     items: [
-      { id: 'bombolini-dark', name: 'Dark Chocolate Bombolini', price: '₹120', dietary: 'Eggless' },
-      { id: 'bombolini-milk', name: 'Milk Chocolate Bombolini', price: '₹120', dietary: 'Eggless' },
-      { id: 'bombolini-white', name: 'White Chocolate Bombolini', price: '₹120', dietary: 'Eggless' },
-      { id: 'bombolini-mango', name: 'Mango Cream Bombolini', price: '₹120', dietary: 'Eggless' },
-      { id: 'bombolini-strawberry', name: 'Strawberry Bombolini', price: '₹120', dietary: 'Eggless' },
-      { id: 'bombolini-blueberry', name: 'Blueberry Bombolini', price: '₹120', dietary: 'Eggless' },
-      { id: 'bombolini-nutella', name: 'Nutella Bombolini', price: '₹140', dietary: 'Eggless' }
+      { id: 'bombolini-dark', name: 'Dark Chocolate Bombolini', dietary: 'Eggless' },
+      { id: 'bombolini-milk', name: 'Milk Chocolate Bombolini', dietary: 'Eggless' },
+      { id: 'bombolini-white', name: 'White Chocolate Bombolini', dietary: 'Eggless' },
+      { id: 'bombolini-mango', name: 'Mango Cream Bombolini', dietary: 'Eggless' },
+      { id: 'bombolini-strawberry', name: 'Strawberry Bombolini', dietary: 'Eggless' },
+      { id: 'bombolini-blueberry', name: 'Blueberry Bombolini', dietary: 'Eggless' },
+      { id: 'bombolini-nutella', name: 'Nutella Bombolini', dietary: 'Eggless' }
     ]
   },
   {
     id: 'brownies',
     label: 'Brownies',
     items: [
-      { id: 'brownie-classic', name: 'Classic Brownie', price: '₹100', dietary: 'Eggless' },
-      { id: 'brownie-cookie', name: 'Cookie Crumble Brownie', price: '₹120', dietary: 'Eggless' },
-      { id: 'brownie-double', name: 'Double Chocolate Brownie', price: '₹120', dietary: 'Eggless' },
-      { id: 'brownie-nutella', name: 'Nutella Brownie', price: '₹120', dietary: 'Eggless' },
-      { id: 'brownie-biscoff', name: 'Biscoff Brownie', price: '₹120', dietary: 'Eggless' }
+      { id: 'brownie-classic', name: 'Classic Brownie', dietary: 'Eggless' },
+      { id: 'brownie-cookie', name: 'Cookie Crumble Brownie', dietary: 'Eggless' },
+      { id: 'brownie-double', name: 'Double Chocolate Brownie', dietary: 'Eggless' },
+      { id: 'brownie-nutella', name: 'Nutella Brownie', dietary: 'Eggless' },
+      { id: 'brownie-biscoff', name: 'Biscoff Brownie', dietary: 'Eggless' }
     ]
   },
   {
     id: 'cheesecake',
     label: 'NYC-style Cheesecake',
     items: [
-      { id: 'cheesecake-plain', name: 'Plain Cheesecake', price: '₹200', dietary: 'Eggless' },
-      { id: 'cheesecake-nutella', name: 'Nutella Cheesecake', price: '₹230', dietary: 'Eggless' },
-      { id: 'cheesecake-biscoff', name: 'Biscoff Cheesecake', price: '₹230', dietary: 'Eggless' },
-      { id: 'cheesecake-blueberry', name: 'Blueberry Cheesecake', price: '₹230', dietary: 'Eggless' },
-      { id: 'cheesecake-mango', name: 'Mango Cheesecake', price: '₹230', dietary: 'Eggless' }
+      { id: 'cheesecake-plain', name: 'Plain Cheesecake', dietary: 'Eggless' },
+      { id: 'cheesecake-nutella', name: 'Nutella Cheesecake', dietary: 'Eggless' },
+      { id: 'cheesecake-biscoff', name: 'Biscoff Cheesecake', dietary: 'Eggless' },
+      { id: 'cheesecake-blueberry', name: 'Blueberry Cheesecake', dietary: 'Eggless' },
+      { id: 'cheesecake-mango', name: 'Mango Cheesecake', dietary: 'Eggless' }
     ]
   },
   {
     id: 'muffins',
     label: 'Butter Muffins',
     items: [
-      { id: 'muffin-almond', name: 'Almond Muffin', price: '₹80', dietary: 'Eggless' },
-      { id: 'muffin-chocochip', name: 'Chocochip Muffin', price: '₹80', dietary: 'Eggless' }
+      { id: 'muffin-almond', name: 'Almond Muffin', dietary: 'Eggless' },
+      { id: 'muffin-chocochip', name: 'Chocochip Muffin', dietary: 'Eggless' }
     ]
   },
   {
     id: 'cookies',
     label: 'NYC Cookies',
     items: [
-      { id: 'cookie-double', name: 'Double Chocolate Cookie', price: '₹100', dietary: 'Contains Egg' },
-      { id: 'cookie-chocochip', name: 'Chocochip Cookie', price: '₹100', dietary: 'Contains Egg' }
+      { id: 'cookie-double', name: 'Double Chocolate Cookie', dietary: 'Contains Egg' },
+      { id: 'cookie-chocochip', name: 'Chocochip Cookie', dietary: 'Contains Egg' }
     ]
   }
 ];
@@ -225,7 +225,7 @@ export default function OrderForm() {
                   <option value="">Select an item</option>
                   {selectedCategory?.items.map(item => (
                     <option key={item.id} value={item.id}>
-                      {item.name} - {item.price}
+                      {item.name}
                     </option>
                   ))}
                 </select>
@@ -267,9 +267,6 @@ export default function OrderForm() {
               <div className="bg-pink-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-600">
                   <span className="font-medium">Selected Item:</span> {selectedItem.name}
-                </p>
-                <p className="text-sm text-gray-600">
-                  <span className="font-medium">Price:</span> {selectedItem.price}
                 </p>
                 <p className="text-sm text-gray-600">
                   <span className="font-medium">Dietary:</span> {selectedItem.dietary}
