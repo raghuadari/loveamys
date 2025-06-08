@@ -7,7 +7,6 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import OrderForm from '@/components/OrderForm';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { IconType } from 'react-icons';
 import { FaInstagram, FaFacebook, FaYoutube, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import Image from 'next/image';
 
@@ -146,49 +145,76 @@ export default function Home() {
             <div>
               <h3 className="text-xl font-bold mb-4">Follow Us</h3>
               <div className="flex space-x-6">
-                {[
-                  {
-                    Icon: FaInstagram,
-                    href: 'https://instagram.com/loveamys.bakes',
-                    label: 'Instagram'
-                  },
-                  {
-                    Icon: FaFacebook,
-                    href: 'https://facebook.com/loveamys.bakes',
-                    label: 'Facebook'
-                  },
-                  {
-                    Icon: FaYoutube,
-                    href: 'https://youtube.com/@loveamysbakes',
-                    label: 'YouTube'
-                  },
-                  {
-                    Icon: FaTwitter,
-                    href: 'https://twitter.com/loveamysbakes',
-                    label: 'Twitter'
-                  },
-                  {
-                    Icon: FaWhatsapp,
-                    href: 'https://wa.me/919059888990',
-                    label: 'WhatsApp'
-                  }
-                ].map(({ Icon, href, label }, index) => (
-                  <motion.a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-pink-600 transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    aria-label={label}
-                  >
-                    <Icon className="w-6 h-6" />
-                  </motion.a>
-                ))}
+                <motion.a
+                  href="https://instagram.com/loveamys.bakes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-pink-600 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0 }}
+                  aria-label="Instagram"
+                >
+                  <FaInstagram className="w-6 h-6" />
+                </motion.a>
+                <motion.a
+                  href="https://facebook.com/loveamys.bakes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-pink-600 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  aria-label="Facebook"
+                >
+                  <FaFacebook className="w-6 h-6" />
+                </motion.a>
+                <motion.a
+                  href="https://youtube.com/@loveamysbakes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-pink-600 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  aria-label="YouTube"
+                >
+                  <FaYoutube className="w-6 h-6" />
+                </motion.a>
+                <motion.a
+                  href="https://twitter.com/loveamysbakes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-pink-600 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  aria-label="Twitter"
+                >
+                  <FaTwitter className="w-6 h-6" />
+                </motion.a>
+                <motion.a
+                  href="https://wa.me/919059888990"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-pink-600 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  aria-label="WhatsApp"
+                >
+                  <FaWhatsapp className="w-6 h-6" />
+                </motion.a>
               </div>
             </div>
           </div>
