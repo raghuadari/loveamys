@@ -106,6 +106,16 @@ export default function Home() {
                   Whether you're celebrating a special occasion or just treating yourself, we're here
                   to make your day a little sweeter.
                 </p>
+                <motion.a
+                  href="https://chat.whatsapp.com/GbR024obUrW5SYHoTLrobA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-6 bg-green-500 text-white px-6 py-3 rounded-full text-lg font-medium hover:bg-green-600 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Join Our WhatsApp Group 📱
+                </motion.a>
               </div>
               <div className="bg-pink-50 rounded-2xl p-8">
                 <Image
