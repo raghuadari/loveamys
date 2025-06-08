@@ -73,15 +73,15 @@ const menuCategories = [
     label: 'Cakes',
     description: '',
     items: [
-      { id: 'classic-vanilla', name: 'Classic Vanilla Cake', dietary: '' },
-      { id: 'biscoff-cake', name: 'Biscoff Cake', dietary: '' },
-      { id: 'strawberry-cake', name: 'Strawberry Cake', dietary: '' },
-      { id: 'blueberry-cake', name: 'Blueberry Cake', dietary: '' },
-      { id: 'mango-cake', name: 'Mango Cake', dietary: '' },
-      { id: 'chocolate-cake', name: 'Chocolate Cake', dietary: '' },
-      { id: 'chocolate-mango-cake', name: 'Chocolate & Mango Cake', dietary: '' },
-      { id: 'red-velvet-cream-cheese', name: 'Red Velvet with Cream Cheese Cake', dietary: '' },
-      { id: 'almond-praline', name: 'Almond Praline Cake', dietary: '' },
+      { id: 'classic-vanilla', name: 'Classic Vanilla Cake', dietary: 'Eggless/Egg' },
+      { id: 'biscoff-cake', name: 'Biscoff Cake', dietary: 'Eggless/Egg' },
+      { id: 'strawberry-cake', name: 'Strawberry Cake', dietary: 'Eggless/Egg' },
+      { id: 'blueberry-cake', name: 'Blueberry Cake', dietary: 'Eggless/Egg' },
+      { id: 'mango-cake', name: 'Mango Cake', dietary: 'Eggless/Egg' },
+      { id: 'chocolate-cake', name: 'Chocolate Cake', dietary: 'Eggless/Egg' },
+      { id: 'chocolate-mango-cake', name: 'Chocolate & Mango Cake', dietary: 'Eggless/Egg' },
+      { id: 'red-velvet-cream-cheese', name: 'Red Velvet with Cream Cheese Cake', dietary: 'Eggless/Egg' },
+      { id: 'almond-praline', name: 'Almond Praline Cake', dietary: 'Eggless/Egg' },
     ]
   },
   {
@@ -89,11 +89,11 @@ const menuCategories = [
     label: 'Cheesecakes',
     description: '',
     items: [
-      { id: 'plain-cheesecake', name: 'Plain Cheesecake', dietary: '' },
-      { id: 'nutella-topping', name: 'Nutella Cheesecake', dietary: '' },
-      { id: 'biscoff-topping', name: 'Biscoff Cheesecake', dietary: '' },
-      { id: 'blueberry-topping', name: 'Blueberry Cheesecake', dietary: '' },
-      { id: 'mango-topping', name: 'Mango Cheesecake (limited edition)', dietary: '' },
+      { id: 'plain-cheesecake', name: 'Plain Cheesecake', dietary: 'Eggless' },
+      { id: 'nutella-topping', name: 'Nutella Cheesecake', dietary: 'Eggless' },
+      { id: 'biscoff-topping', name: 'Biscoff Cheesecake', dietary: 'Eggless' },
+      { id: 'blueberry-topping', name: 'Blueberry Cheesecake', dietary: 'Eggless' },
+      { id: 'mango-topping', name: 'Mango Cheesecake (limited edition)', dietary: 'Eggless' },
     ]
   },
   {
@@ -101,9 +101,38 @@ const menuCategories = [
     label: 'Breads',
     description: '',
     items: [
-      { id: 'sourdough', name: 'Sourdough Cheesecake', dietary: '' },
-      { id: 'whole-wheat-bread', name: 'Whole Wheat Bread', dietary: '' },
-      { id: 'shokupan-bread', name: 'Shokupan Bread', dietary: '' },
+      { id: 'sourdough', name: 'Sourdough Cheesecake', dietary: 'Eggless' },
+      { id: 'whole-wheat-bread', name: 'Whole Wheat Bread', dietary: 'Eggless' },
+      { id: 'shokupan-bread', name: 'Shokupan Bread', dietary: 'Eggless' },
+    ]
+  },
+  {
+    id: 'loafs',
+    label: 'Loafs',
+    description: '',
+    items: [
+      { id: 'banana-chocochip', name: 'Banana Chocochip Loaf', dietary: 'Eggless' },
+      { id: 'banana-walnut', name: 'Banana Walnut Loaf', dietary: 'Eggless' },
+      { id: 'chocolate', name: 'Chocolate Loaf', dietary: 'Eggless' },
+      { id: 'vanilla', name: 'Vanilla Loaf', dietary: 'Eggless' },
+      { id: 'carrot-creamcheese', name: 'Carrot Creamcheese', dietary: 'Eggless' },
+      { id: 'marble', name: 'Marble Loaf', dietary: 'Eggless' },
+      { id: 'lemon', name: 'Lemon Loaf', dietary: 'Eggless' },
+    ]
+  },
+  {
+    id: 'special',
+    label: 'Special Items',
+    description: 'Contact for flavours, quantity and availability',
+    items: [
+      { id: 'babka', name: 'Chocolate Babka', dietary: 'Contains Egg' },
+      { id: 'macaroons', name: 'Assorted Macaroons', dietary: 'Contains Egg'},
+      { id: 'tresleches', name: 'Tres Leches', dietary: 'Eggless' },
+      { id: 'cinnamon-roll', name: 'Cinammon Roll', dietary: 'Contains Egg' },
+      { id: 'granola', name: 'Granola', dietary: 'Eggless' },
+      { id: 'overnight-oats', name: 'Overnight Oats', dietary: 'Eggless' },
+      { id: 'pudding', name: 'Pudding', dietary: 'Eggless' },
+
     ]
   }
 ];

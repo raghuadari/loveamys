@@ -2,7 +2,6 @@
 
 import Navigation from '@/components/Navigation';
 import MenuSection from '@/components/MenuSection';
-import GallerySection from '@/components/GallerySection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import OrderForm from '@/components/OrderForm';
 import { motion } from 'framer-motion';
@@ -125,7 +124,6 @@ export default function Home() {
       </section>
 
       <MenuSection />
-      <GallerySection />
       <TestimonialsSection />
       <OrderForm />
 

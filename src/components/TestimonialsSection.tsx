@@ -6,40 +6,49 @@ import { useState } from 'react';
 const testimonials = [
   {
     id: 1,
-    name: 'Sarah Johnson',
-    role: 'Wedding Client',
+    name: 'Prachi',
+    role: 'Cheesecake Lover',
     image: '/images/testimonial-1.jpg',
-    text: "Amy created the most beautiful wedding cake for our special day! The design was exactly what we wanted, and it tasted even better than it looked. Our guests couldn't stop raving about it!",
+    text: "Hello Dear, the cheesecake was so yumm, Heavenly !",
     rating: 5,
-    date: 'March 2024'
+    date: '7th June, 2025'
   },
   {
     id: 2,
-    name: 'Mike Chen',
-    role: 'Regular Customer',
+    name: 'Vidya',
+    role: 'Korean Cheese Bun Lover',
     image: '/images/testimonial-2.jpg',
-    text: "I've been getting my weekly sourdough bread from Love Amy's for over a year now. The quality is consistently amazing, and the staff is always friendly. It's become a staple in our household!",
+    text: "IThe Korean bun was yummy. Came home with a knee injury; it was wonderful comfort food😊",
     rating: 5,
-    date: 'February 2024'
+    date: '7th May, 2025'
   },
   {
     id: 3,
-    name: 'Emma Rodriguez',
-    role: 'Birthday Party Host',
+    name: 'Rebecca',
+    role: 'Bombolini & Cookie Lover',
     image: '/images/testimonial-3.jpg',
-    text: "The birthday cupcakes were a huge hit at my daughter's party! Not only were they adorable, but they were delicious too. Amy went above and beyond to make them special.",
+    text: "First they said we will only eat bombolini today , tomorrow will have cookies but once they started eating they finished it all in one siting lol",
     rating: 5,
-    date: 'January 2024'
+    date: '6th June, 2025'
   },
   {
     id: 4,
-    name: 'David Kim',
-    role: 'Corporate Client',
+    name: 'Kranti',
+    role: 'Cake Lover',
     image: '/images/testimonial-4.jpg',
-    text: "We order Love Amy's cookies for our office meetings every month. They're always fresh, delicious, and beautifully packaged. The team loves them!",
+    text: " just wanted to say huge thank you for baking me that amazing chocolate cake on our wedding anniversary!! It was absolutely delicious and thoughtfully made. The flavors were rich and presentation was perfecte It truly made our special day even more memorable. Your baking skills are seriously impressive.Once again thank you sooo much",
     rating: 5,
-    date: 'December 2023'
-  }
+    date: '7th May, 2025'
+  },
+  {
+    id: 5,
+    name: 'Madhumanti Roy',
+    role: 'Bread Lover',
+    image: '/images/testimonial-5.jpg',
+    text: "The whole wheat bread was very tasty and so fresh! ",
+    rating: 5,
+    date: '21st April, 2025'
+  },
 ];
 
 export default function TestimonialsSection() {

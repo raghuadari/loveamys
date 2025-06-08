@@ -37,14 +37,29 @@ const menuCategories = [
     ]
   },
   {
-    id: 'cheesecake',
-    label: 'NYC-style Cheesecake',
+    id: 'cakes',
+    label: 'Cakes',
     items: [
-      { id: 'cheesecake-plain', name: 'Plain Cheesecake', dietary: 'Eggless' },
-      { id: 'cheesecake-nutella', name: 'Nutella Cheesecake', dietary: 'Eggless' },
-      { id: 'cheesecake-biscoff', name: 'Biscoff Cheesecake', dietary: 'Eggless' },
-      { id: 'cheesecake-blueberry', name: 'Blueberry Cheesecake', dietary: 'Eggless' },
-      { id: 'cheesecake-mango', name: 'Mango Cheesecake', dietary: 'Eggless' }
+      { id: 'classic-vanilla', name: 'Classic Vanilla Cake', dietary: '' },
+      { id: 'biscoff-cake', name: 'Biscoff Cake', dietary: '' },
+      { id: 'strawberry-cake', name: 'Strawberry Cake', dietary: '' },
+      { id: 'blueberry-cake', name: 'Blueberry Cake', dietary: '' },
+      { id: 'mango-cake', name: 'Mango Cake', dietary: '' },
+      { id: 'chocolate-cake', name: 'Chocolate Cake', dietary: '' },
+      { id: 'chocolate-mango-cake', name: 'Chocolate & Mango Cake', dietary: '' },
+      { id: 'red-velvet-cream-cheese', name: 'Red Velvet with Cream Cheese Cake', dietary: '' },
+      { id: 'almond-praline', name: 'Almond Praline Cake', dietary: '' }
+    ]
+  },
+  {
+    id: 'cheesecakes',
+    label: 'Cheesecakes',
+    items: [
+      { id: 'plain-cheesecake', name: 'Plain Cheesecake', dietary: '' },
+      { id: 'nutella-topping', name: 'Nutella Cheesecake', dietary: '' },
+      { id: 'biscoff-topping', name: 'Biscoff Cheesecake', dietary: '' },
+      { id: 'blueberry-topping', name: 'Blueberry Cheesecake', dietary: '' },
+      { id: 'mango-topping', name: 'Mango Cheesecake (limited edition)', dietary: '' }
     ]
   },
   {
@@ -61,6 +76,15 @@ const menuCategories = [
     items: [
       { id: 'cookie-double', name: 'Double Chocolate Cookie', dietary: 'Contains Egg' },
       { id: 'cookie-chocochip', name: 'Chocochip Cookie', dietary: 'Contains Egg' }
+    ]
+  },
+  {
+    id: 'breads',
+    label: 'Breads',
+    items: [
+      { id: 'sourdough', name: 'Sourdough', dietary: '' },
+      { id: 'whole-wheat-bread', name: 'Whole Wheat Bread', dietary: '' },
+      { id: 'shokupan-bread', name: 'Shokupan Bread', dietary: '' }
     ]
   }
 ];
@@ -84,10 +108,21 @@ export default function OrderForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
     
-    // Simulate form submission
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await fetch('/.netlify/functions/send-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit order');
+      }
+
       setSubmitStatus('success');
       setFormData({
         name: '',
@@ -101,6 +136,7 @@ export default function OrderForm() {
         dietary: ''
       });
     } catch (error) {
+      console.error('Error submitting order:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
