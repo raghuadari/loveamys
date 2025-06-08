@@ -67,6 +67,44 @@ const menuCategories = [
       { id: 'cookie-double', name: 'Double Chocolate Cookie', dietary: 'Contains Egg' },
       { id: 'cookie-chocochip', name: 'Chocochip Cookie', dietary: 'Contains Egg' }
     ]
+  },
+  {
+    id: 'cakes',
+    label: 'Cakes',
+    description: 'Our cakes start at ₹1800 per kg, and chocolate cakes begin at ₹2000 per kg. Cakes with nuts or praline are priced at ₹2000 per kg.',
+    items: [
+      { id: 'classic-vanilla', name: 'Classic Vanilla', dietary: '' },
+      { id: 'biscoff-cake', name: 'Biscoff', dietary: '' },
+      { id: 'strawberry-cake', name: 'Strawberry', dietary: '' },
+      { id: 'blueberry-cake', name: 'Blueberry', dietary: '' },
+      { id: 'mango-cake', name: 'Mango', dietary: '' },
+      { id: 'chocolate-cake', name: 'Chocolate', dietary: '' },
+      { id: 'chocolate-mango-cake', name: 'Chocolate & Mango', dietary: '' },
+      { id: 'red-velvet-cream-cheese', name: 'Red Velvet with Cream Cheese', dietary: '' },
+      { id: 'almond-praline', name: 'Almond Praline', dietary: '' },
+    ]
+  },
+  {
+    id: 'cheesecakes',
+    label: 'Cheesecakes',
+    description: 'Cheesecakes are priced at ₹2000 per kg. We also offer half-kg cheesecakes for ₹1000. Toppings are available at ₹200 per kg.',
+    items: [
+      { id: 'plain-cheesecake', name: 'Plain Cheesecake', dietary: '' },
+      { id: 'nutella-topping', name: 'Nutella Topping', dietary: '' },
+      { id: 'biscoff-topping', name: 'Biscoff Topping', dietary: '' },
+      { id: 'blueberry-topping', name: 'Blueberry Topping', dietary: '' },
+      { id: 'mango-topping', name: 'Mango Topping (limited edition)', dietary: '' },
+    ]
+  },
+  {
+    id: 'breads',
+    label: 'Breads',
+    description: '',
+    items: [
+      { id: 'sourdough', name: 'Sourdough', dietary: '' },
+      { id: 'whole-wheat-bread', name: 'Whole Wheat Bread', dietary: '' },
+      { id: 'shokupan-bread', name: 'Shokupan Bread', dietary: '' },
+    ]
   }
 ];
 
@@ -92,6 +130,8 @@ export default function MenuSection() {
       ? categoryItems.filter(item => item.dietary === 'Eggless')
       : categoryItems;
   };
+
+  const currentCategory = menuCategories.find((category) => category.id === activeCategory);
 
   return (
     <section id="menu" className="py-20 bg-pink-50">
@@ -145,6 +185,11 @@ export default function MenuSection() {
               </motion.button>
             ))}
           </div>
+
+          {/* Description */}
+          {currentCategory?.description && (
+            <p className="text-sm text-pink-700 mb-6 font-medium">{currentCategory.description}</p>
+          )}
 
           {/* Menu Items Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
