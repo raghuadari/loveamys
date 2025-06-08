@@ -71,29 +71,29 @@ const menuCategories = [
   {
     id: 'cakes',
     label: 'Cakes',
-    description: 'Available flavours: Classic Vanilla, Biscoff, Strawberry, Blueberry, Mango, Chocolate, Chocolate & Mango, Red Velvet with Cream Cheese, Almond Praline.',
+    description: '',
     items: [
       { id: 'classic-vanilla', name: 'Classic Vanilla Cake', dietary: '' },
-      { id: 'biscoff-cake', name: 'Biscoff', dietary: '' },
-      { id: 'strawberry-cake', name: 'Strawberry', dietary: '' },
-      { id: 'blueberry-cake', name: 'Blueberry', dietary: '' },
-      { id: 'mango-cake', name: 'Mango', dietary: '' },
-      { id: 'chocolate-cake', name: 'Chocolate', dietary: '' },
-      { id: 'chocolate-mango-cake', name: 'Chocolate & Mango', dietary: '' },
-      { id: 'red-velvet-cream-cheese', name: 'Red Velvet with Cream Cheese', dietary: '' },
-      { id: 'almond-praline', name: 'Almond Praline', dietary: '' },
+      { id: 'biscoff-cake', name: 'Biscoff Cake', dietary: '' },
+      { id: 'strawberry-cake', name: 'Strawberry Cake', dietary: '' },
+      { id: 'blueberry-cake', name: 'Blueberry Cake', dietary: '' },
+      { id: 'mango-cake', name: 'Mango Cake', dietary: '' },
+      { id: 'chocolate-cake', name: 'Chocolate Cake', dietary: '' },
+      { id: 'chocolate-mango-cake', name: 'Chocolate & Mango Cake', dietary: '' },
+      { id: 'red-velvet-cream-cheese', name: 'Red Velvet with Cream Cheese Cake', dietary: '' },
+      { id: 'almond-praline', name: 'Almond Praline Cake', dietary: '' },
     ]
   },
   {
     id: 'cheesecakes',
     label: 'Cheesecakes',
-    description: 'Cheesecakes are priced at ₹2000 per kg. We also offer half-kg cheesecakes for ₹1000. Toppings are available at ₹200 per kg.',
+    description: '',
     items: [
       { id: 'plain-cheesecake', name: 'Plain Cheesecake', dietary: '' },
-      { id: 'nutella-topping', name: 'Nutella Topping', dietary: '' },
-      { id: 'biscoff-topping', name: 'Biscoff Topping', dietary: '' },
-      { id: 'blueberry-topping', name: 'Blueberry Topping', dietary: '' },
-      { id: 'mango-topping', name: 'Mango Topping (limited edition)', dietary: '' },
+      { id: 'nutella-topping', name: 'Nutella Cheesecake', dietary: '' },
+      { id: 'biscoff-topping', name: 'Biscoff Cheesecake', dietary: '' },
+      { id: 'blueberry-topping', name: 'Blueberry Cheesecake', dietary: '' },
+      { id: 'mango-topping', name: 'Mango Cheesecake (limited edition)', dietary: '' },
     ]
   },
   {
@@ -101,7 +101,7 @@ const menuCategories = [
     label: 'Breads',
     description: '',
     items: [
-      { id: 'sourdough', name: 'Sourdough', dietary: '' },
+      { id: 'sourdough', name: 'Sourdough Cheesecake', dietary: '' },
       { id: 'whole-wheat-bread', name: 'Whole Wheat Bread', dietary: '' },
       { id: 'shokupan-bread', name: 'Shokupan Bread', dietary: '' },
     ]
