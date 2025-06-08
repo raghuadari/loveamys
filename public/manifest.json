@@ -1,6 +1,6 @@
 {
-  "name": "Love Amy's Bakery",
-  "short_name": "Love Amy's",
+  "name": "Love, Amy's Bakery",
+  "short_name": "Love, Amy's",
   "description": "A modern home bakery offering delicious treats made with love",
   "start_url": "/",
   "display": "standalone",

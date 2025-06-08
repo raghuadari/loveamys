@@ -12,7 +12,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Love Amy's Bakery | Home Bakery",
+  title: "Love, Amy's Bakery | Home Bakery",
   description: "A modern home bakery offering delicious treats made with love. Freshly baked goods, custom orders, and more!",
   keywords: "bakery, home bakery, custom cakes, pastries, bread, desserts, Gen Z bakery",
   icons: {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: "Love Amy's Bakery",
+    title: "Love, Amy's Bakery",
   },
 };
 
