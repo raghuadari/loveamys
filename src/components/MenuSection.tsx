@@ -71,9 +71,9 @@ const menuCategories = [
   {
     id: 'cakes',
     label: 'Cakes',
-    description: 'Our cakes start at ₹1800 per kg, and chocolate cakes begin at ₹2000 per kg. Cakes with nuts or praline are priced at ₹2000 per kg.',
+    description: 'Available flavours: Classic Vanilla, Biscoff, Strawberry, Blueberry, Mango, Chocolate, Chocolate & Mango, Red Velvet with Cream Cheese, Almond Praline.',
     items: [
-      { id: 'classic-vanilla', name: 'Classic Vanilla', dietary: '' },
+      { id: 'classic-vanilla', name: 'Classic Vanilla Cake', dietary: '' },
       { id: 'biscoff-cake', name: 'Biscoff', dietary: '' },
       { id: 'strawberry-cake', name: 'Strawberry', dietary: '' },
       { id: 'blueberry-cake', name: 'Blueberry', dietary: '' },
