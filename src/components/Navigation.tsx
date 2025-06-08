@@ -21,8 +21,7 @@ export default function Navigation() {
     { href: '#about', label: 'About' },
     { href: '#menu', label: 'Menu' },
     { href: '#gallery', label: 'Gallery' },
-    { href: '#testimonials', label: 'Testimonials' },
-    { href: '#order', label: 'Order' },
+    { href: '#testimonials', label: 'Testimonials' }
   ];
 
   return (

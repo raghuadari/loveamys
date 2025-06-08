@@ -202,7 +202,7 @@ export default function MenuSection() {
 
     const message = `Hi! I'd like to place an order for:\n\n${selectedItems
       .map(item => `• ${item.name} (${item.category}) - Quantity: ${item.quantity}`)
-      .join('\n')}\n\nPlease let me know the availability and details.`;
+      .join('\n')}\n\nPlease let me know the availability, price and delivery details.`;
     
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/919059888990?text=${encodedMessage}`, '_blank');
