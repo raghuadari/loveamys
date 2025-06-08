@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const menuCategories = [
   {
@@ -140,6 +141,7 @@ const menuCategories = [
 export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState(menuCategories[0].id);
   const [showEgglessOnly, setShowEgglessOnly] = useState(false);
+  const [selectedItems, setSelectedItems] = useState<Array<{ id: string; name: string; category: string }>>([]);
 
   // Get all items from all categories
   const allItems = menuCategories
@@ -162,6 +164,29 @@ export default function MenuSection() {
 
   const currentCategory = menuCategories.find((category) => category.id === activeCategory);
 
+  const toggleItemSelection = (item: { id: string; name: string }) => {
+    setSelectedItems(prev => {
+      const isSelected = prev.some(selected => selected.id === item.id);
+      if (isSelected) {
+        return prev.filter(selected => selected.id !== item.id);
+      } else {
+        return [...prev, { ...item, category: currentCategory?.label || '' }];
+      }
+    });
+  };
+
+  const handleOrderClick = () => {
+    if (selectedItems.length === 0) return;
+
+    const message = `Hi! I'd like to place an order for:\n\n${selectedItems
+      .map(item => `• ${item.name} (${item.category})`)
+      .join('\n')}\n\nPlease let me know the availability and details.`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/919059888990?text=${encodedMessage}`, '_blank');
+    setSelectedItems([]); // Clear selection after sending
+  };
+
   return (
     <section id="menu" className="py-20 bg-pink-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -181,7 +206,7 @@ export default function MenuSection() {
           </p>
 
           {/* Filter Buttons */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center gap-4 mb-8">
             <motion.button
               onClick={() => setShowEgglessOnly(!showEgglessOnly)}
               className={`px-6 py-2 rounded-full text-lg font-medium transition-colors ${
@@ -194,6 +219,18 @@ export default function MenuSection() {
             >
               {showEgglessOnly ? '🍳 Show All Items' : '🥚 Show Eggless Only'}
             </motion.button>
+            {selectedItems.length > 0 && (
+              <motion.button
+                onClick={() => setSelectedItems([])}
+                className="px-6 py-2 rounded-full text-lg font-medium bg-red-100 text-red-700 hover:bg-red-200 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+              >
+                Clear Selection ({selectedItems.length})
+              </motion.button>
+            )}
           </div>
 
           {/* Category Tabs */}
@@ -222,49 +259,67 @@ export default function MenuSection() {
 
           {/* Menu Items Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {getFilteredItems().map((item) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-xl font-semibold text-gray-900">
-                      {item.name}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-gray-500 mb-4">
-                    {item.dietary}
-                  </p>
-                  {item.id.includes('bombolini') && (
-                    <p className="text-sm text-pink-600 font-medium">
-                      Limited stock available!
+            {getFilteredItems().map((item) => {
+              const isSelected = selectedItems.some(selected => selected.id === item.id);
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className={`bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all ${
+                    isSelected ? 'ring-2 ring-green-500' : ''
+                  }`}
+                  onClick={() => toggleItemSelection(item)}
+                >
+                  <div className="p-6">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-xl font-semibold text-gray-900">
+                        {item.name}
+                      </h3>
+                      {isSelected && (
+                        <span className="text-green-500 text-xl">✓</span>
+                      )}
+                    </div>
+                    <p className="text-sm text-gray-500 mb-4">
+                      {item.dietary}
                     </p>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+                    {item.id.includes('bombolini') && (
+                      <p className="text-sm text-pink-600 font-medium mb-4">
+                        Limited stock available!
+                      </p>
+                    )}
+                    <p className="text-sm text-gray-600">
+                      Click to {isSelected ? 'deselect' : 'select'} item
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          {/* Order Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-12"
-          >
-            <a
-              href="#order"
-              className="inline-block bg-pink-600 text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-pink-700 transition-colors"
-            >
-              Place Your Order
-            </a>
-          </motion.div>
+          {/* Floating Order Button */}
+          <AnimatePresence>
+            {selectedItems.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                className="fixed bottom-8 right-8 z-50"
+              >
+                <motion.button
+                  onClick={handleOrderClick}
+                  className="bg-green-500 text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg flex items-center gap-3 hover:bg-green-600 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="text-xl">📱</span>
+                  Order {selectedItems.length} Item{selectedItems.length > 1 ? 's' : ''} on WhatsApp
+                </motion.button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
     </section>

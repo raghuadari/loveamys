@@ -18,7 +18,7 @@ const testimonials = [
     name: 'Vidya',
     role: 'Korean Cheese Bun Lover',
     image: '/images/testimonial-2.jpg',
-    text: "IThe Korean bun was yummy. Came home with a knee injury; it was wonderful comfort food😊",
+    text: "The Korean bun was yummy. Came home with a knee injury; it was wonderful comfort food😊",
     rating: 5,
     date: '7th May, 2025'
   },
