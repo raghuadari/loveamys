@@ -113,9 +113,9 @@ export default function Home() {
                 <Image
                   src="/images/amy-ghibli.png"
                   alt="Amy's Ghibli Picture"
-                  width={400}
-                  height={300}
-                  className="rounded-lg w-full h-auto"
+                  width={220}
+                  height={180}
+                  className="rounded-lg object-contain mx-auto"
                   priority
                 />
               </div>
