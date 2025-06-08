@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Inserting a global rule on html to prevent overflow-x (black space on the right) on mobile view */
+html { overflow-x: hidden; }
+
+/* Inserting a global rule on body to prevent overflow-x (black space on the right) on mobile view */
+body { overflow-x: hidden; }
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;

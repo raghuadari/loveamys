@@ -7,7 +7,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import OrderForm from '@/components/OrderForm';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaInstagram, FaFacebook, FaYoutube, FaTwitter, FaWhatsapp } from 'react-icons/fa';
+import * as FaIcons from 'react-icons/fa';
 import Image from 'next/image';
 
 export default function Home() {
@@ -157,7 +157,7 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: 0 }}
                   aria-label="Instagram"
                 >
-                  <FaInstagram className="w-6 h-6" />
+                  {FaIcons.FaInstagram({ className: "w-6 h-6" })}
                 </motion.a>
                 <motion.a
                   href="https://facebook.com/loveamys.bakes"
@@ -171,7 +171,7 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   aria-label="Facebook"
                 >
-                  <FaFacebook className="w-6 h-6" />
+                  {FaIcons.FaFacebook({ className: "w-6 h-6" })}
                 </motion.a>
                 <motion.a
                   href="https://youtube.com/@loveamysbakes"
@@ -185,7 +185,7 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   aria-label="YouTube"
                 >
-                  <FaYoutube className="w-6 h-6" />
+                  {FaIcons.FaYoutube({ className: "w-6 h-6" })}
                 </motion.a>
                 <motion.a
                   href="https://twitter.com/loveamysbakes"
@@ -199,7 +199,7 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   aria-label="Twitter"
                 >
-                  <FaTwitter className="w-6 h-6" />
+                  {FaIcons.FaTwitter({ className: "w-6 h-6" })}
                 </motion.a>
                 <motion.a
                   href="https://wa.me/919059888990"
@@ -213,7 +213,7 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: 0.4 }}
                   aria-label="WhatsApp"
                 >
-                  <FaWhatsapp className="w-6 h-6" />
+                  {FaIcons.FaWhatsapp({ className: "w-6 h-6" })}
                 </motion.a>
               </div>
             </div>

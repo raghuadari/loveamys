@@ -1,0 +1,21 @@
+{
+  "name": "Love Amy's Bakery",
+  "short_name": "Love Amy's",
+  "description": "A modern home bakery offering delicious treats made with love",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/images/loveamys-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/loveamys-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+} 
