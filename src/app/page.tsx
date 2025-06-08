@@ -3,7 +3,6 @@
 import Navigation from '@/components/Navigation';
 import MenuSection from '@/components/MenuSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
-import OrderForm from '@/components/OrderForm';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import * as FaIcons from 'react-icons/fa';
@@ -125,7 +124,6 @@ export default function Home() {
 
       <MenuSection />
       <TestimonialsSection />
-      <OrderForm />
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
