@@ -151,29 +151,39 @@ export default function MenuSection() {
   const [showEgglessOnly, setShowEgglessOnly] = useState(false);
   const [selectedItems, setSelectedItems] = useState<MenuItem[]>([]);
 
-  // Get all items from all categories
-  const allItems = menuCategories
-    .filter(category => category.id !== 'all')
-    .flatMap(category => category.items);
-
-  // Update the 'all' category items
-  menuCategories[0].items = allItems;
-
   // Filter items based on category and eggless preference
   const getFilteredItems = () => {
-    const allItems = menuCategories.flatMap(category =>
-      category.items.map(item => ({
-        ...item,
-        category: category.label,
-        quantity: 1
-      }))
-    );
+    let filteredItems: any[] = [];
 
-    return allItems.filter(item => {
-      const matchesCategory = activeCategory === 'all' || item.category === menuCategories.find(cat => cat.id === activeCategory)?.label;
-      const matchesDietary = !showEgglessOnly || item.dietary === 'Eggless';
-      return matchesCategory && matchesDietary;
-    });
+    if (activeCategory === 'all') {
+      // Show all items from all categories except 'all'
+      filteredItems = menuCategories
+        .filter(category => category.id !== 'all')
+        .flatMap(category =>
+          category.items.map(item => ({
+            ...item,
+            category: category.label,
+            quantity: 1
+          }))
+        );
+    } else {
+      // Find the selected category by id
+      const selectedCategory = menuCategories.find(cat => cat.id === activeCategory);
+      if (selectedCategory) {
+        filteredItems = selectedCategory.items.map(item => ({
+          ...item,
+          category: selectedCategory.label,
+          quantity: 1
+        }));
+      }
+    }
+
+    // Dietary filter: match any item whose dietary string includes 'Eggless'
+    if (showEgglessOnly) {
+      filteredItems = filteredItems.filter(item => item.dietary && item.dietary.toLowerCase().includes('eggless'));
+    }
+
+    return filteredItems;
   };
 
   const currentCategory = menuCategories.find((category) => category.id === activeCategory);

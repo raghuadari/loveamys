@@ -1,93 +1,166 @@
+import Script from 'next/script';
+
 export default function StructuredData() {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Bakery",
-    "name": "Love, Amy's Bakery",
-    "description": "Best home bakery in Nallagandla, Hyderabad. Fresh cakes, pastries, bread, and desserts made with love. Free delivery above ₹1000.",
-    "url": "https://loveamys.netlify.app",
-    "logo": "https://loveamys.netlify.app/images/loveamys-logo.png",
-    "image": "https://loveamys.netlify.app/images/loveamys-logo.png",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Shop no 8, M Block Basement, Aparna Cyberzon",
-      "addressLocality": "Nallagandla",
-      "addressRegion": "Hyderabad",
-      "postalCode": "500019",
-      "addressCountry": "IN"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "17.3850",
-      "longitude": "78.4867"
-    },
-    "telephone": "+91-90598-88990",
-    "email": "loveamys.bakes@gmail.com",
-    "openingHours": [
-      "Tu-Su 11:00-17:00"
-    ],
-    "priceRange": "₹₹",
-    "servesCuisine": ["Bakery", "Desserts", "Pastries", "Bread"],
-    "hasMenu": "https://loveamys.netlify.app/#menu",
-    "sameAs": [
-      "https://instagram.com/loveamys.bakes",
-      "https://facebook.com/loveamys.bakes",
-      "https://youtube.com/@loveamysbakes",
-      "https://twitter.com/loveamysbakes"
-    ],
-    "areaServed": {
-      "@type": "City",
-      "name": "Hyderabad",
-      "containsPlace": {
-        "@type": "Place",
-        "name": "Nallagandla"
-      }
-    },
-    "serviceArea": {
-      "@type": "City",
-      "name": "Hyderabad"
-    },
-    "deliveryAvailable": true,
-    "paymentAccepted": ["Cash", "Digital Payment"],
-    "currenciesAccepted": "INR",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "reviewCount": "5",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "review": [
+    "@graph": [
       {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Prachi"
+        "@type": "LocalBusiness",
+        "@id": "https://loveamys.netlify.app/#localbusiness",
+        "name": "Love, Amy's Bakery",
+        "description": "Best home bakery in Nallagandla, Hyderabad. Fresh cakes, pastries, bread, and desserts made with love. Free delivery above ₹1000.",
+        "url": "https://loveamys.netlify.app",
+        "telephone": "+91-9059888990",
+        "email": "contact@loveamys.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Aparna Cyberzon",
+          "addressLocality": "Nallagandla",
+          "addressRegion": "Hyderabad",
+          "addressCountry": "IN",
+          "postalCode": "500019"
         },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 17.3850,
+          "longitude": 78.4867
         },
-        "reviewBody": "Hello Dear, the cheesecake was so yumm, Heavenly!"
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "09:00",
+            "closes": "20:00"
+          }
+        ],
+        "priceRange": "₹₹",
+        "paymentAccepted": ["Cash", "UPI", "Bank Transfer"],
+        "currenciesAccepted": "INR",
+        "areaServed": {
+          "@type": "City",
+          "name": "Hyderabad"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Bakery Menu",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "FoodEstablishment",
+                "name": "Custom Cakes",
+                "description": "Fresh custom cakes for all occasions"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "FoodEstablishment",
+                "name": "Pastries",
+                "description": "Fresh pastries and desserts"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "FoodEstablishment",
+                "name": "Bread",
+                "description": "Fresh bread and baked goods"
+              }
+            }
+          ]
+        },
+        "sameAs": [
+          "https://instagram.com/loveamys.bakes",
+          "https://facebook.com/loveamys.bakes",
+          "https://youtube.com/@loveamysbakes",
+          "https://twitter.com/loveamysbakes"
+        ],
+        "image": [
+          "https://loveamys.netlify.app/images/loveamys-logo.png",
+          "https://loveamys.netlify.app/images/amy-ghibli.png"
+        ],
+        "logo": "https://loveamys.netlify.app/images/loveamys-logo.png",
+        "foundingDate": "2023",
+        "foundingLocation": {
+          "@type": "Place",
+          "name": "Nallagandla, Hyderabad"
+        },
+        "knowsAbout": [
+          "Baking",
+          "Cake Making",
+          "Pastry Making",
+          "Bread Making",
+          "Custom Cakes",
+          "Wedding Cakes",
+          "Birthday Cakes"
+        ],
+        "hasCredential": "FSSAI Registered",
+        "deliveryArea": {
+          "@type": "City",
+          "name": "Hyderabad"
+        },
+        "deliveryCharge": "Free delivery above ₹1000",
+        "minimumOrderAmount": "₹100"
       },
       {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Vidya"
+        "@type": "FoodEstablishment",
+        "@id": "https://loveamys.netlify.app/#foodestablishment",
+        "name": "Love, Amy's Bakery",
+        "servesCuisine": ["Bakery", "Desserts", "Cakes", "Pastries", "Bread"],
+        "menu": "https://loveamys.netlify.app/#menu",
+        "acceptsReservations": false,
+        "takeout": true,
+        "delivery": true,
+        "priceRange": "₹₹",
+        "paymentAccepted": ["Cash", "UPI", "Bank Transfer"],
+        "currenciesAccepted": "INR"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://loveamys.netlify.app/#website",
+        "url": "https://loveamys.netlify.app",
+        "name": "Love, Amy's Bakery",
+        "description": "Best home bakery in Nallagandla, Hyderabad. Fresh cakes, pastries, bread, and desserts made with love.",
+        "publisher": {
+          "@id": "https://loveamys.netlify.app/#localbusiness"
         },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
+        "potentialAction": [
+          {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://loveamys.netlify.app/#menu"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        ],
+        "inLanguage": "en-IN"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://loveamys.netlify.app/#organization",
+        "name": "Love, Amy's Bakery",
+        "url": "https://loveamys.netlify.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://loveamys.netlify.app/images/loveamys-logo.png",
+          "width": 300,
+          "height": 100
         },
-        "reviewBody": "The Korean bun was yummy. Came home with a knee injury; it was wonderful comfort food😊"
+        "sameAs": [
+          "https://instagram.com/loveamys.bakes",
+          "https://facebook.com/loveamys.bakes",
+          "https://youtube.com/@loveamysbakes",
+          "https://twitter.com/loveamysbakes"
+        ]
       }
     ]
   };
 
   return (
-    <script
+    <Script
+      id="structured-data"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
     />
