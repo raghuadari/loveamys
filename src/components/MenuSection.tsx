@@ -156,7 +156,6 @@ export default function MenuSection() {
     let filteredItems: any[] = [];
 
     if (activeCategory === 'all') {
-      // Show all items from all categories except 'all'
       filteredItems = menuCategories
         .filter(category => category.id !== 'all')
         .flatMap(category =>
@@ -167,7 +166,6 @@ export default function MenuSection() {
           }))
         );
     } else {
-      // Find the selected category by id
       const selectedCategory = menuCategories.find(cat => cat.id === activeCategory);
       if (selectedCategory) {
         filteredItems = selectedCategory.items.map(item => ({
@@ -178,9 +176,13 @@ export default function MenuSection() {
       }
     }
 
-    // Dietary filter: match any item whose dietary string includes 'Eggless'
     if (showEgglessOnly) {
       filteredItems = filteredItems.filter(item => item.dietary && item.dietary.toLowerCase().includes('eggless'));
+    }
+
+    // Debug: log filtered items
+    if (typeof window !== 'undefined') {
+      console.log('Filtered menu items:', filteredItems);
     }
 
     return filteredItems;
