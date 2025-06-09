@@ -67,6 +67,9 @@ export default function Home() {
             <p className="text-lg text-pink-600 font-medium">
               ✨ All items are made fresh to order with a minimum 24-hour notice ✨
             </p>
+            <p className="text-lg text-green-600 font-medium mt-2">
+              🚚 Free delivery on orders above ₹1000 | 💰 Delivery charges apply below ₹1000
+            </p>
           </motion.div>
           <motion.a
             href="#menu"
@@ -150,7 +153,15 @@ export default function Home() {
               <p className="text-gray-400">
                 Email: loveamys.bakes@gmail.com<br />
                 Phone: +91 90598 88990<br />
-                Hours: Tue-Sun 11am-5pm
+                Hours: Tue-Sun 11am-5pm<br />
+                Address: Shop no 8, M Block Basement, Aparna Cyberzon, Nallagandla, Hyderabad - 500019
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">Delivery Information</h3>
+              <p className="text-gray-400">
+                🚚 Free delivery on orders above ₹1000<br />
+                💰 Delivery charges apply for orders below ₹1000
               </p>
             </div>
             <div>
