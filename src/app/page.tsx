@@ -213,22 +213,6 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-              <p className="text-gray-400">
-                Email: loveamys.bakes@gmail.com<br />
-                Phone: +91 90598 88990<br />
-                Hours: Tue-Sun 11am-5pm<br />
-                Address: Shop no 8, M Block Basement, Aparna Cyberzon, Nallagandla, Hyderabad - 500019
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Delivery Information</h3>
-              <p className="text-gray-400">
-                🚚 Free delivery on orders above ₹1000<br />
-                💰 Delivery charges apply for orders below ₹1000
-              </p>
-            </div>
-            <div>
               <h3 className="text-xl font-bold mb-4">Follow Us</h3>
               <div className="flex space-x-6">
                 <motion.a
@@ -302,6 +286,22 @@ export default function Home() {
                   {FaIcons.FaWhatsapp({ className: "w-6 h-6" })}
                 </motion.a>
               </div>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+              <p className="text-gray-400">
+                Email: loveamys.bakes@gmail.com<br />
+                Phone: +91 90598 88990<br />
+                Hours: Tue-Sun 11am-5pm<br />
+                Address: Shop no 8, M Block Basement, Aparna Cyberzon, Nallagandla, Hyderabad - 500019
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">Delivery Information</h3>
+              <p className="text-gray-400">
+                🚚 Free delivery on orders above ₹1000<br />
+                💰 Delivery charges apply for orders below ₹1000
+              </p>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
