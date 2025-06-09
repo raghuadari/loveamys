@@ -114,7 +114,72 @@ export default function StructuredData() {
         "delivery": true,
         "priceRange": "₹₹",
         "paymentAccepted": ["Cash", "UPI", "Bank Transfer"],
-        "currenciesAccepted": "INR"
+        "currenciesAccepted": "INR",
+        "hasMenu": {
+          "@type": "Menu",
+          "name": "Love Amy's Bakery Menu",
+          "url": "https://loveamys.netlify.app/#menu",
+          "hasMenuSection": [
+            {
+              "@type": "MenuSection",
+              "name": "Cakes",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Classic Vanilla Cake",
+                  "description": "Fresh vanilla cake made to order",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "Contact for pricing",
+                    "priceCurrency": "INR"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Chocolate Cake",
+                  "description": "Rich chocolate cake made to order",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "Contact for pricing",
+                    "priceCurrency": "INR"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Cheesecakes",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Plain Cheesecake",
+                  "description": "Classic New York style cheesecake",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "Contact for pricing",
+                    "priceCurrency": "INR"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "MenuSection",
+              "name": "Breads",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Sourdough Bread",
+                  "description": "Fresh sourdough bread",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "Contact for pricing",
+                    "priceCurrency": "INR"
+                  }
+                }
+              ]
+            }
+          ]
+        }
       },
       {
         "@type": "WebSite",

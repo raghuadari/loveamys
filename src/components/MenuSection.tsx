@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 
@@ -150,43 +150,114 @@ export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState(menuCategories[0].id);
   const [showEgglessOnly, setShowEgglessOnly] = useState(false);
   const [selectedItems, setSelectedItems] = useState<MenuItem[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  // Filter items based on category and eggless preference
-  const getFilteredItems = () => {
-    let filteredItems: any[] = [];
+  // Monitor state changes
+  useEffect(() => {
+    console.log('State changed - activeCategory:', activeCategory, 'showEgglessOnly:', showEgglessOnly, 'searchQuery:', searchQuery);
+  }, [activeCategory, showEgglessOnly, searchQuery]);
 
+  // Log menu data structure on mount
+  useEffect(() => {
+    console.log('=== MENU DATA STRUCTURE ===');
+    console.log('Total categories:', menuCategories.length);
+    menuCategories.forEach(category => {
+      console.log(`${category.label} (${category.id}): ${category.items.length} items`);
+    });
+    console.log('=== END MENU DATA ===');
+  }, []);
+
+  // Keyboard navigation for category tabs
+  const handleKeyDown = (event: React.KeyboardEvent, categoryId: string) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      setActiveCategory(categoryId);
+    }
+  };
+
+  // Keyboard navigation for filter buttons
+  const handleFilterKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      setShowEgglessOnly(!showEgglessOnly);
+    }
+  };
+
+  // Memoized filtered items - this ensures React re-renders when state changes
+  const filteredItems = useMemo(() => {
+    console.log('=== FILTERING DEBUG ===');
+    console.log('Active category:', activeCategory);
+    console.log('Show eggless only:', showEgglessOnly);
+    console.log('Search query:', searchQuery);
+    
+    let items: any[] = [];
+
+    // Step 1: Get items based on category
     if (activeCategory === 'all') {
-      filteredItems = menuCategories
-        .filter(category => category.id !== 'all')
-        .flatMap(category =>
-          category.items.map(item => ({
-            ...item,
-            category: category.label,
-            quantity: 1
-          }))
-        );
+      console.log('Getting all items from all categories');
+      // Get all items from all categories except 'all'
+      const allCategories = menuCategories.filter(category => category.id !== 'all');
+      console.log('Categories to process:', allCategories.map(c => c.label));
+      
+      items = allCategories.flatMap(category => {
+        const categoryItems = category.items.map(item => ({
+          ...item,
+          category: category.label,
+          quantity: 1
+        }));
+        console.log(`Items from ${category.label}:`, categoryItems.length);
+        return categoryItems;
+      });
     } else {
+      console.log('Getting items from specific category:', activeCategory);
       const selectedCategory = menuCategories.find(cat => cat.id === activeCategory);
       if (selectedCategory) {
-        filteredItems = selectedCategory.items.map(item => ({
+        items = selectedCategory.items.map(item => ({
           ...item,
           category: selectedCategory.label,
           quantity: 1
         }));
+        console.log(`Items from ${selectedCategory.label}:`, items.length);
+      } else {
+        console.log('Selected category not found!');
       }
     }
 
+    console.log('Items after category filtering:', items.length);
+
+    // Step 2: Apply dietary filter
     if (showEgglessOnly) {
-      filteredItems = filteredItems.filter(item => item.dietary && item.dietary.toLowerCase().includes('eggless'));
+      console.log('Applying eggless filter...');
+      const beforeCount = items.length;
+      items = items.filter(item => {
+        const isEggless = item.dietary && item.dietary.toLowerCase().includes('eggless');
+        console.log(`${item.name}: ${item.dietary} -> ${isEggless ? 'INCLUDED' : 'EXCLUDED'}`);
+        return isEggless;
+      });
+      console.log(`Eggless filter: ${beforeCount} -> ${items.length} items`);
     }
 
-    // Debug: log filtered items
-    if (typeof window !== 'undefined') {
-      console.log('Filtered menu items:', filteredItems);
+    // Step 3: Apply search filter
+    if (searchQuery.trim()) {
+      console.log('Applying search filter...');
+      const beforeCount = items.length;
+      const query = searchQuery.toLowerCase().trim();
+      items = items.filter(item => {
+        const matchesName = item.name.toLowerCase().includes(query);
+        const matchesCategory = item.category.toLowerCase().includes(query);
+        const matchesDietary = item.dietary.toLowerCase().includes(query);
+        const isMatch = matchesName || matchesCategory || matchesDietary;
+        console.log(`${item.name}: ${isMatch ? 'MATCH' : 'NO MATCH'} (name: ${matchesName}, category: ${matchesCategory}, dietary: ${matchesDietary})`);
+        return isMatch;
+      });
+      console.log(`Search filter: ${beforeCount} -> ${items.length} items`);
     }
 
-    return filteredItems;
-  };
+    console.log('Final filtered items:', items);
+    console.log('=== END FILTERING DEBUG ===');
+    
+    return items;
+  }, [activeCategory, showEgglessOnly, searchQuery]); // Added searchQuery to dependencies
 
   const currentCategory = menuCategories.find((category) => category.id === activeCategory);
 
@@ -239,28 +310,71 @@ export default function MenuSection() {
             Browse our selection of delicious treats below.
           </p>
 
+          {/* Search Bar */}
+          <div className="max-w-md mx-auto mb-8">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search by name, category, or dietary preference..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-4 py-3 pl-12 pr-4 text-lg border-2 border-gray-200 rounded-full focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-colors"
+                aria-label="Search menu items"
+              />
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600"
+                  aria-label="Clear search"
+                >
+                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </div>
+            {searchQuery && (
+              <p className="text-sm text-gray-600 mt-2 text-center">
+                Showing {filteredItems.length} result{filteredItems.length !== 1 ? 's' : ''} for "{searchQuery}"
+              </p>
+            )}
+          </div>
+
           {/* Filter Buttons */}
-          <div className="flex justify-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <motion.button
               onClick={() => setShowEgglessOnly(!showEgglessOnly)}
-              className={`px-6 py-2 rounded-full text-lg font-medium transition-colors ${
+              className={`px-6 py-3 rounded-full text-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 min-h-[48px] ${
                 showEgglessOnly
                   ? 'bg-green-600 text-white'
                   : 'bg-white text-gray-700 hover:bg-green-100'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onKeyDown={handleFilterKeyDown}
+              tabIndex={0}
+              role="button"
+              aria-pressed={showEgglessOnly}
+              aria-label={showEgglessOnly ? 'Show all items' : 'Show eggless items only'}
             >
               {showEgglessOnly ? '🍳 Show All Items' : '🥚 Show Eggless Only'}
             </motion.button>
             {selectedItems.length > 0 && (
               <motion.button
                 onClick={() => setSelectedItems([])}
-                className="px-6 py-2 rounded-full text-lg font-medium bg-red-100 text-red-700 hover:bg-red-200 transition-colors"
+                className="px-6 py-3 rounded-full text-lg font-medium bg-red-100 text-red-700 hover:bg-red-200 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 min-h-[48px]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
+                tabIndex={0}
+                role="button"
+                aria-label={`Clear selection of ${selectedItems.length} items`}
               >
                 Clear Selection ({selectedItems.length})
               </motion.button>
@@ -268,18 +382,23 @@ export default function MenuSection() {
           </div>
 
           {/* Category Tabs */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-pink-200 scrollbar-track-pink-50 sticky top-16 z-30 bg-pink-50/95 rounded-xl shadow-sm mb-12 gap-2 md:gap-4 px-2 md:px-0" role="tablist" aria-label="Menu categories">
             {menuCategories.map((category) => (
               <motion.button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-2 rounded-full text-lg font-medium transition-colors ${
+                className={`flex-shrink-0 px-6 py-3 md:py-2 rounded-full text-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 ${
                   activeCategory === category.id
                     ? 'bg-pink-600 text-white'
                     : 'bg-white text-gray-700 hover:bg-pink-100'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                tabIndex={0}
+                role="tab"
+                aria-selected={activeCategory === category.id}
+                aria-controls={`menu-panel-${category.id}`}
+                onKeyDown={(event: React.KeyboardEvent) => handleKeyDown(event, category.id)}
               >
                 {category.label}
               </motion.button>
@@ -292,63 +411,108 @@ export default function MenuSection() {
           )}
 
           {/* Menu Items Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {getFilteredItems().map((item) => {
-              const selectedItem = selectedItems.find(selected => selected.id === item.id);
-              const isSelected = !!selectedItem;
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className={`bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all ${
-                    isSelected ? 'ring-2 ring-green-500' : ''
-                  }`}
-                  onClick={() => toggleItemSelection(item)}
-                >
-                  <div className="p-6">
-                    <div className="flex flex-col items-center text-center mb-2">
-                      <h3 className="text-xl font-semibold text-gray-900">
-                        {item.name}
-                      </h3>
-                      {isSelected && (
-                        <span className="text-green-500 text-xl mt-2">✓</span>
-                      )}
-                    </div>
-                    <p className="text-sm text-gray-500 mb-4 text-center">
-                      {item.dietary}
-                    </p>
-                    {isSelected && (
-                      <div 
-                        className="flex items-center justify-center gap-3 mb-4"
-                        onClick={(e) => e.stopPropagation()} // Prevent item deselection when clicking quantity controls
-                      >
-                        <button
-                          onClick={() => updateItemQuantity(item.id, (selectedItem?.quantity || 1) - 1)}
-                          className="w-8 h-8 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-colors"
-                        >
-                          -
-                        </button>
-                        <span className="text-lg font-medium text-gray-900">
-                          {selectedItem?.quantity || 1}
-                        </span>
-                        <button
-                          onClick={() => updateItemQuantity(item.id, (selectedItem?.quantity || 1) + 1)}
-                          className="w-8 h-8 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-colors"
-                        >
-                          +
-                        </button>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8" role="tabpanel" id={`menu-panel-${activeCategory}`} aria-label={`${currentCategory?.label || 'Menu'} items`}>
+            {filteredItems.length > 0 ? (
+              filteredItems.map((item) => {
+                const selectedItem = selectedItems.find(selected => selected.id === item.id);
+                const isSelected = !!selectedItem;
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className={`bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all min-h-[200px] md:min-h-[180px] ${
+                      isSelected ? 'ring-2 ring-green-500' : ''
+                    }`}
+                    onClick={() => toggleItemSelection(item)}
+                    onKeyDown={(event: React.KeyboardEvent) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        toggleItemSelection(item);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`${item.name} - ${item.dietary}. Click to ${isSelected ? 'deselect' : 'select'} item`}
+                    aria-pressed={isSelected}
+                  >
+                    <div className="p-4 md:p-6 h-full flex flex-col justify-between">
+                      <div className="flex flex-col items-center text-center mb-2">
+                        <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">
+                          {item.name}
+                        </h3>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            item.dietary.toLowerCase().includes('eggless') 
+                              ? 'bg-green-100 text-green-800' 
+                              : 'bg-orange-100 text-orange-800'
+                          }`}>
+                            {item.dietary}
+                          </span>
+                          {isSelected && (
+                            <span className="text-green-500 text-xl">✓</span>
+                          )}
+                        </div>
                       </div>
-                    )}
-                    <p className="text-sm text-pink-600 text-center">
-                      Click to {isSelected ? 'deselect' : 'select'} item
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
+                      {isSelected && (
+                        <div 
+                          className="flex items-center justify-center gap-3 mb-4"
+                          onClick={(e) => e.stopPropagation()} // Prevent item deselection when clicking quantity controls
+                        >
+                          <button
+                            onClick={() => updateItemQuantity(item.id, (selectedItem?.quantity || 1) - 1)}
+                            className="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500"
+                            aria-label="Decrease quantity"
+                          >
+                            -
+                          </button>
+                          <span className="text-lg font-medium text-gray-900 min-w-[2rem] text-center">
+                            {selectedItem?.quantity || 1}
+                          </span>
+                          <button
+                            onClick={() => updateItemQuantity(item.id, (selectedItem?.quantity || 1) + 1)}
+                            className="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500"
+                            aria-label="Increase quantity"
+                          >
+                            +
+                          </button>
+                        </div>
+                      )}
+                      <p className="text-sm text-pink-600 text-center mt-auto">
+                        Click to {isSelected ? 'deselect' : 'select'} item
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <div className="text-6xl mb-4">🔍</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  No items found
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  {searchQuery 
+                    ? `No items match "${searchQuery}". Try adjusting your search or filters.`
+                    : 'No items available in this category with the current filters.'
+                  }
+                </p>
+                {(searchQuery || showEgglessOnly) && (
+                  <button
+                    onClick={() => {
+                      setSearchQuery('');
+                      setShowEgglessOnly(false);
+                      setActiveCategory('all');
+                    }}
+                    className="px-6 py-2 bg-pink-600 text-white rounded-full hover:bg-pink-700 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+                  >
+                    Clear All Filters
+                  </button>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Floating Order Button */}
