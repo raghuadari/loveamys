@@ -10,6 +10,10 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import * as FaIcons from 'react-icons/fa';
 import Image from 'next/image';
+import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
+import ContactSection from '@/components/ContactSection';
+import GallerySection from '@/components/GallerySection';
 
 export default function Home() {
   const [heroRef, heroInView] = useInView({

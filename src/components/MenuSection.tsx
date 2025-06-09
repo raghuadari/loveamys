@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
+import LoadingSpinner from './LoadingSpinner';
 
 interface MenuItem {
   id: string;
@@ -151,11 +152,35 @@ export default function MenuSection() {
   const [showEgglessOnly, setShowEgglessOnly] = useState(false);
   const [selectedItems, setSelectedItems] = useState<MenuItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   // Monitor state changes
   useEffect(() => {
     console.log('State changed - activeCategory:', activeCategory, 'showEgglessOnly:', showEgglessOnly, 'searchQuery:', searchQuery);
   }, [activeCategory, showEgglessOnly, searchQuery]);
+
+  // Debounced search effect
+  useEffect(() => {
+    if (searchQuery.trim()) {
+      setIsSearching(true);
+      const timer = setTimeout(() => {
+        setIsSearching(false);
+      }, 300);
+      return () => clearTimeout(timer);
+    } else {
+      setIsSearching(false);
+    }
+  }, [searchQuery]);
+
+  // Simulate loading on category change
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [activeCategory]);
 
   // Log menu data structure on mount
   useEffect(() => {
@@ -322,14 +347,18 @@ export default function MenuSection() {
                 aria-label="Search menu items"
               />
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+                {isSearching ? (
+                  <LoadingSpinner size="sm" color="pink" />
+                ) : (
+                  <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                )}
               </div>
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600"
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600 transition-colors"
                   aria-label="Clear search"
                 >
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -339,9 +368,14 @@ export default function MenuSection() {
               )}
             </div>
             {searchQuery && (
-              <p className="text-sm text-gray-600 mt-2 text-center">
-                Showing {filteredItems.length} result{filteredItems.length !== 1 ? 's' : ''} for "{searchQuery}"
-              </p>
+              <motion.p 
+                className="text-sm text-gray-600 mt-2 text-center"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {isSearching ? 'Searching...' : `Showing ${filteredItems.length} result${filteredItems.length !== 1 ? 's' : ''} for "${searchQuery}"`}
+              </motion.p>
             )}
           </div>
 
@@ -412,84 +446,121 @@ export default function MenuSection() {
 
           {/* Menu Items Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8" role="tabpanel" id={`menu-panel-${activeCategory}`} aria-label={`${currentCategory?.label || 'Menu'} items`}>
-            {filteredItems.length > 0 ? (
-              filteredItems.map((item) => {
-                const selectedItem = selectedItems.find(selected => selected.id === item.id);
-                const isSelected = !!selectedItem;
-                return (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
-                    className={`bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all min-h-[200px] md:min-h-[180px] ${
-                      isSelected ? 'ring-2 ring-green-500' : ''
-                    }`}
-                    onClick={() => toggleItemSelection(item)}
-                    onKeyDown={(event: React.KeyboardEvent) => {
-                      if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        toggleItemSelection(item);
-                      }
-                    }}
-                    tabIndex={0}
-                    role="button"
-                    aria-label={`${item.name} - ${item.dietary}. Click to ${isSelected ? 'deselect' : 'select'} item`}
-                    aria-pressed={isSelected}
-                  >
-                    <div className="p-4 md:p-6 h-full flex flex-col justify-between">
-                      <div className="flex flex-col items-center text-center mb-2">
-                        <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">
-                          {item.name}
-                        </h3>
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            item.dietary.toLowerCase().includes('eggless') 
-                              ? 'bg-green-100 text-green-800' 
-                              : 'bg-orange-100 text-orange-800'
-                          }`}>
-                            {item.dietary}
-                          </span>
-                          {isSelected && (
-                            <span className="text-green-500 text-xl">✓</span>
-                          )}
+            {isLoading ? (
+              <div className="col-span-full flex justify-center items-center py-16">
+                <LoadingSpinner size="lg" color="pink" text="Loading menu items..." />
+              </div>
+            ) : filteredItems.length > 0 ? (
+              <AnimatePresence mode="wait">
+                {filteredItems.map((item, index) => {
+                  const selectedItem = selectedItems.find(selected => selected.id === item.id);
+                  const isSelected = !!selectedItem;
+                  return (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                      transition={{ 
+                        duration: 0.4, 
+                        delay: index * 0.1,
+                        ease: [0.4, 0, 0.2, 1]
+                      }}
+                      whileHover={{ 
+                        y: -5, 
+                        scale: 1.02,
+                        transition: { duration: 0.2 }
+                      }}
+                      className={`bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all min-h-[200px] md:min-h-[180px] ${
+                        isSelected ? 'ring-2 ring-green-500 shadow-xl' : 'hover:shadow-xl'
+                      }`}
+                      onClick={() => toggleItemSelection(item)}
+                      onKeyDown={(event: React.KeyboardEvent) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault();
+                          toggleItemSelection(item);
+                        }
+                      }}
+                      tabIndex={0}
+                      role="button"
+                      aria-label={`${item.name} - ${item.dietary}. Click to ${isSelected ? 'deselect' : 'select'} item`}
+                      aria-pressed={isSelected}
+                    >
+                      <div className="p-4 md:p-6 h-full flex flex-col justify-between">
+                        <div className="flex flex-col items-center text-center mb-2">
+                          <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">
+                            {item.name}
+                          </h3>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              item.dietary.toLowerCase().includes('eggless') 
+                                ? 'bg-green-100 text-green-800' 
+                                : 'bg-orange-100 text-orange-800'
+                            }`}>
+                              {item.dietary}
+                            </span>
+                            {isSelected && (
+                              <motion.span 
+                                className="text-green-500 text-xl"
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                              >
+                                ✓
+                              </motion.span>
+                            )}
+                          </div>
                         </div>
+                        {isSelected && (
+                          <motion.div 
+                            className="flex items-center justify-center gap-3 mb-4"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={(e: React.MouseEvent) => e.stopPropagation()} // Prevent item deselection when clicking quantity controls
+                          >
+                            <button
+                              onClick={() => updateItemQuantity(item.id, (selectedItem?.quantity || 1) - 1)}
+                              className="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500"
+                              aria-label="Decrease quantity"
+                            >
+                              -
+                            </button>
+                            <span className="text-lg font-medium text-gray-900 min-w-[2rem] text-center">
+                              {selectedItem?.quantity || 1}
+                            </span>
+                            <button
+                              onClick={() => updateItemQuantity(item.id, (selectedItem?.quantity || 1) + 1)}
+                              className="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500"
+                              aria-label="Increase quantity"
+                            >
+                              +
+                            </button>
+                          </motion.div>
+                        )}
+                        <p className="text-sm text-pink-600 text-center mt-auto">
+                          Click to {isSelected ? 'deselect' : 'select'} item
+                        </p>
                       </div>
-                      {isSelected && (
-                        <div 
-                          className="flex items-center justify-center gap-3 mb-4"
-                          onClick={(e) => e.stopPropagation()} // Prevent item deselection when clicking quantity controls
-                        >
-                          <button
-                            onClick={() => updateItemQuantity(item.id, (selectedItem?.quantity || 1) - 1)}
-                            className="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500"
-                            aria-label="Decrease quantity"
-                          >
-                            -
-                          </button>
-                          <span className="text-lg font-medium text-gray-900 min-w-[2rem] text-center">
-                            {selectedItem?.quantity || 1}
-                          </span>
-                          <button
-                            onClick={() => updateItemQuantity(item.id, (selectedItem?.quantity || 1) + 1)}
-                            className="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center hover:bg-pink-200 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500"
-                            aria-label="Increase quantity"
-                          >
-                            +
-                          </button>
-                        </div>
-                      )}
-                      <p className="text-sm text-pink-600 text-center mt-auto">
-                        Click to {isSelected ? 'deselect' : 'select'} item
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
             ) : (
-              <div className="col-span-full text-center py-12">
-                <div className="text-6xl mb-4">🔍</div>
+              <motion.div 
+                className="col-span-full text-center py-12"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <motion.div 
+                  className="text-6xl mb-4"
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                >
+                  🔍
+                </motion.div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
                   No items found
                 </h3>
@@ -500,18 +571,20 @@ export default function MenuSection() {
                   }
                 </p>
                 {(searchQuery || showEgglessOnly) && (
-                  <button
+                  <motion.button
                     onClick={() => {
                       setSearchQuery('');
                       setShowEgglessOnly(false);
                       setActiveCategory('all');
                     }}
                     className="px-6 py-2 bg-pink-600 text-white rounded-full hover:bg-pink-700 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     Clear All Filters
-                  </button>
+                  </motion.button>
                 )}
-              </div>
+              </motion.div>
             )}
           </div>
 
