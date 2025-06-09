@@ -79,6 +79,70 @@ export default function Home() {
           >
             View Our Menu
           </motion.a>
+          
+          {/* Social Media Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-8 flex justify-center space-x-6"
+          >
+            <motion.a
+              href="https://instagram.com/loveamys.bakes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-pink-600 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Instagram"
+            >
+              {FaIcons.FaInstagram({ className: "w-6 h-6" })}
+            </motion.a>
+            <motion.a
+              href="https://facebook.com/loveamys.bakes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-pink-600 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Facebook"
+            >
+              {FaIcons.FaFacebook({ className: "w-6 h-6" })}
+            </motion.a>
+            <motion.a
+              href="https://youtube.com/@loveamysbakes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-pink-600 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="YouTube"
+            >
+              {FaIcons.FaYoutube({ className: "w-6 h-6" })}
+            </motion.a>
+            <motion.a
+              href="https://twitter.com/loveamysbakes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-pink-600 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Twitter"
+            >
+              {FaIcons.FaTwitter({ className: "w-6 h-6" })}
+            </motion.a>
+            <motion.a
+              href="https://wa.me/919059888990"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-pink-600 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="WhatsApp"
+            >
+              {FaIcons.FaWhatsapp({ className: "w-6 h-6" })}
+            </motion.a>
+          </motion.div>
         </motion.div>
       </section>
 
