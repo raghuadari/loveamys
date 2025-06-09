@@ -162,16 +162,20 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="text-left">
                 <p className="text-lg text-gray-600 mb-6">
-                  Welcome to Love Amy's Bakery, where passion meets pastry! We're a home-based bakery
+                  Welcome to Love Amy's Bakery, the best home bakery in Nallagandla, Hyderabad! We're a home-based bakery
                   dedicated to creating delicious treats that bring joy to your special moments.
                 </p>
                 <p className="text-lg text-gray-600 mb-6">
-                  Every item is baked with love and the finest ingredients, just for you. Our journey
-                  began with a simple dream: to share the joy of homemade baked goods with our community.
+                  Located in Aparna Cyberzon, Nallagandla, we serve the entire Hyderabad area with fresh, homemade cakes, 
+                  pastries, bread, and desserts. Every item is baked with love and the finest ingredients, just for you.
+                </p>
+                <p className="text-lg text-gray-600 mb-6">
+                  Whether you're celebrating a special occasion or just treating yourself, we're here
+                  to make your day a little sweeter. We offer free delivery for orders above ₹1000 across Hyderabad.
                 </p>
                 <p className="text-lg text-gray-600">
-                  Whether you're celebrating a special occasion or just treating yourself, we're here
-                  to make your day a little sweeter.
+                  From custom wedding cakes to daily bread, from Korean cheese buns to classic cheesecakes - 
+                  we're your trusted local bakery in Nallagandla, Hyderabad.
                 </p>
                 <motion.a
                   href="https://chat.whatsapp.com/GbR024obUrW5SYHoTLrobA"
