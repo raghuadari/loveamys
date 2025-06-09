@@ -3,6 +3,7 @@
 import Navigation from '@/components/Navigation';
 import MenuSection from '@/components/MenuSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import GalleryCarousel from '@/components/GalleryCarousel';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import * as FaIcons from 'react-icons/fa';
@@ -162,7 +163,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="text-left">
                 <p className="text-lg text-gray-600 mb-6">
-                  Welcome to Love Amy's Bakery, the best home bakery in Nallagandla, Hyderabad! We're a home-based bakery
+                  Welcome to Love Amy's Bakery, the best home bakery in Nallagandla, Hyderabad! We're an FSSAI registered bakery
                   dedicated to creating delicious treats that bring joy to your special moments.
                 </p>
                 <p className="text-lg text-gray-600 mb-6">
@@ -175,7 +176,7 @@ export default function Home() {
                 </p>
                 <p className="text-lg text-gray-600">
                   From custom wedding cakes to daily bread, from Korean cheese buns to classic cheesecakes - 
-                  we're your trusted local bakery in Nallagandla, Hyderabad.
+                  we're your trusted FSSAI registered local bakery in Nallagandla, Hyderabad.
                 </p>
                 <motion.a
                   href="https://chat.whatsapp.com/GbR024obUrW5SYHoTLrobA"
@@ -203,6 +204,7 @@ export default function Home() {
         </div>
       </section>
 
+      <GalleryCarousel />
       <MenuSection />
       <TestimonialsSection />
 
