@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     siteName: "Love, Amy's Bakery",
     images: [
       {
-        url: '/images/gallery/chocolate cake.JPG',
+        url: '/images/gallery/chocolate-cake.jpg',
         width: 1200,
         height: 630,
         alt: "Fresh chocolate cake from Love Amy's Bakery, Nallagandla Hyderabad",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Love, Amy's Bakery | Home Bakery in Nallagandla, Hyderabad",
     description: "Best home bakery in Nallagandla, Hyderabad. Fresh cakes, pastries, bread, and desserts made with love. Free delivery above ₹1000.",
-    images: ['/images/gallery/chocolate cake.JPG'],
+    images: ['/images/gallery/chocolate-cake.jpg'],
     creator: '@loveamysbakes',
     site: '@loveamysbakes',
   },
