@@ -15,7 +15,11 @@ export default function BackToTop() {
       }
     };
 
+<<<<<<< HEAD
     window.addEventListener('scroll', toggleVisibility);
+=======
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
@@ -35,7 +39,11 @@ export default function BackToTop() {
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
           onClick={scrollToTop}
+<<<<<<< HEAD
           className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-pink-600 hover:bg-pink-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 group"
+=======
+          className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-brand-primary hover:bg-brand-dark text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 group"
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
           aria-label="Back to top"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}

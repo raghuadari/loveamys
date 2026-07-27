@@ -4,16 +4,28 @@
   "description": "A modern home bakery offering delicious treats made with love",
   "start_url": "/",
   "display": "standalone",
+<<<<<<< HEAD
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "icons": [
     {
       "src": "/images/loveamys-logo.png",
+=======
+  "background_color": "#FDF8F3",
+  "theme_color": "#A07850",
+  "icons": [
+    {
+      "src": "/icon-heart.png",
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
       "sizes": "192x192",
       "type": "image/png"
     },
     {
+<<<<<<< HEAD
       "src": "/images/loveamys-logo.png",
+=======
+      "src": "/icon-heart.png",
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
       "sizes": "512x512",
       "type": "image/png"
     }

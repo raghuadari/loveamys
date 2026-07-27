@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client';
 
 import Navigation from '@/components/Navigation';
@@ -22,18 +23,37 @@ export default function Home() {
     initialInView: true,
   });
 
+=======
+// Server component — interactive sections are extracted into their own 'use client' components
+import Navigation from '@/components/Navigation';
+import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
+import GalleryCarousel from '@/components/GalleryCarousel';
+import MenuSection from '@/components/MenuSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import Footer from '@/components/Footer';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import PerformanceMonitor from '@/components/PerformanceMonitor';
+
+export default function Home() {
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
   return (
     <ErrorBoundary>
       <PerformanceMonitor />
       <main className="min-h-screen">
         <Navigation />
 
+<<<<<<< HEAD
         {/* Info Banner */}
+=======
+        {/* Info Banner — static, server-rendered */}
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
         <div className="fixed top-[56px] left-0 right-0 z-40 bg-brand-deep text-brand-gold text-xs sm:text-sm text-center py-1.5 px-4 flex flex-wrap justify-center gap-x-4 gap-y-0.5">
           <span>✨ Made fresh to order · 24-hr notice required</span>
           <span>🚚 Free delivery on orders above ₹1000</span>
         </div>
 
+<<<<<<< HEAD
         {/* Hero Section */}
         <section id="home" className="relative h-screen flex items-center justify-center bg-gradient-to-b from-brand-cream to-white pt-[84px]">
           <motion.div
@@ -266,6 +286,14 @@ export default function Home() {
             </div>
           </div>
         </footer>
+=======
+        <HeroSection />
+        <AboutSection />
+        <GalleryCarousel />
+        <MenuSection />
+        <TestimonialsSection />
+        <Footer />
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
       </main>
     </ErrorBoundary>
   );

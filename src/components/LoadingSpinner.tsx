@@ -4,11 +4,19 @@ import { motion } from 'framer-motion';
 
 interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg';
+<<<<<<< HEAD
   color?: 'pink' | 'white';
   text?: string;
 }
 
 export default function LoadingSpinner({ size = 'md', color = 'pink', text }: LoadingSpinnerProps) {
+=======
+  color?: 'pink' | 'white' | 'brand';
+  text?: string;
+}
+
+export default function LoadingSpinner({ size = 'md', color = 'brand', text }: LoadingSpinnerProps) {
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
   const sizeClasses = {
     sm: 'w-4 h-4',
     md: 'w-8 h-8',
@@ -17,7 +25,12 @@ export default function LoadingSpinner({ size = 'md', color = 'pink', text }: Lo
 
   const colorClasses = {
     pink: 'text-pink-600',
+<<<<<<< HEAD
     white: 'text-white'
+=======
+    white: 'text-white',
+    brand: 'text-brand-primary',
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
   };
 
   return (

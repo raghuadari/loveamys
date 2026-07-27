@@ -56,7 +56,11 @@ export default class ErrorBoundary extends Component<Props, State> {
             </p>
             <motion.button
               onClick={() => window.location.reload()}
+<<<<<<< HEAD
               className="bg-pink-600 text-white px-6 py-3 rounded-full font-medium hover:bg-pink-700 transition-colors"
+=======
+              className="bg-brand-primary text-white px-6 py-3 rounded-full font-medium hover:bg-brand-dark transition-colors"
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

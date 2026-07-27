@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 import LoadingSpinner from './LoadingSpinner';
+<<<<<<< HEAD
 
 interface MenuItem {
   id: string;
@@ -92,6 +93,10 @@ const menuCategories = [
     { id: 'pudding', name: 'Pudding', dietary: 'Eggless' },
   ]}
 ];
+=======
+import { menuCategories, type MenuItem } from '@/data/menu';
+import { BUSINESS } from '@/lib/business';
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
 
 export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState(menuCategories[0].id);
@@ -132,7 +137,11 @@ export default function MenuSection() {
   };
 
   const filteredItems = useMemo(() => {
+<<<<<<< HEAD
     let items: any[] = [];
+=======
+    let items: MenuItem[] = [];
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
     if (activeCategory === 'all') {
       items = menuCategories
         .filter(c => c.id !== 'all')
@@ -176,7 +185,11 @@ export default function MenuSection() {
     const message = `Hi! I'd like to place an order for:\n\n${selectedItems
       .map(item => `• ${item.name} (${item.category}) - Quantity: ${item.quantity}`)
       .join('\n')}\n\nPlease let me know the availability, price and delivery details.`;
+<<<<<<< HEAD
     window.open(`https://wa.me/919059888990?text=${encodeURIComponent(message)}`, '_blank');
+=======
+    window.open(`https://wa.me/${BUSINESS.phone.wa}?text=${encodeURIComponent(message)}`, '_blank');
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
     setSelectedItems([]);
   };
 
@@ -194,8 +207,12 @@ export default function MenuSection() {
             Our Menu
           </h2>
           <p className="text-lg text-brand-dark mb-12 max-w-3xl mx-auto">
+<<<<<<< HEAD
             All items are made fresh to order with a minimum 24-hour notice.
             Browse our selection of delicious treats below.
+=======
+            Everything is made fresh to order — just give us 24 hours' notice.
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
           </p>
 
           {/* Search Bar */}
@@ -203,7 +220,11 @@ export default function MenuSection() {
             <div className="relative">
               <input
                 type="text"
+<<<<<<< HEAD
                 placeholder="Search by name, category, or dietary preference..."
+=======
+                placeholder="Search the menu…"
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full px-4 py-3 pl-12 pr-4 text-lg border-2 border-brand-light rounded-full focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-gold transition-colors bg-white"
@@ -259,7 +280,11 @@ export default function MenuSection() {
               aria-pressed={showEgglessOnly}
               aria-label={showEgglessOnly ? 'Show all items' : 'Show eggless items only'}
             >
+<<<<<<< HEAD
               {showEgglessOnly ? '🍳 Show All Items' : '🥚 Show Eggless Only'}
+=======
+              {showEgglessOnly ? 'Show All Items' : '🌿 Eggless Only'}
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
             </motion.button>
             {selectedItems.length > 0 && (
               <motion.button
@@ -311,8 +336,13 @@ export default function MenuSection() {
           </div>
 
           {/* Category description */}
+<<<<<<< HEAD
           {(currentCategory as any)?.description && (
             <p className="text-sm text-brand-primary mb-6 font-medium">{(currentCategory as any).description}</p>
+=======
+          {currentCategory?.description && (
+            <p className="text-sm text-brand-primary mb-6 font-medium">{currentCategory.description}</p>
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
           )}
 
           {/* Menu Items Grid */}
@@ -337,7 +367,11 @@ export default function MenuSection() {
                       initial={{ opacity: 0, y: 20, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -20, scale: 0.95 }}
+<<<<<<< HEAD
                       transition={{ duration: 0.4, delay: index * 0.1, ease: [0.4, 0, 0.2, 1] }}
+=======
+                      transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.4), ease: [0.4, 0, 0.2, 1] }}
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
                       whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.2 } }}
                       className={`bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all min-h-[200px] md:min-h-[180px] ${
                         isSelected ? 'ring-2 ring-brand-primary shadow-xl' : 'hover:shadow-xl'
@@ -401,7 +435,11 @@ export default function MenuSection() {
                           </motion.div>
                         )}
                         <p className="text-sm text-brand-primary text-center mt-auto">
+<<<<<<< HEAD
                           {isSelected ? '✓ Added — tap to remove' : 'Tap to add to WhatsApp order'}
+=======
+                          {isSelected ? '✓ Added · tap to remove' : 'Add to order'}
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
                         </p>
                       </div>
                     </motion.div>
@@ -457,7 +495,11 @@ export default function MenuSection() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <span className="text-xl">📱</span>
+<<<<<<< HEAD
                   Order {selectedItems.reduce((t, i) => t + i.quantity, 0)} Item{selectedItems.reduce((t, i) => t + i.quantity, 0) > 1 ? 's' : ''} on WhatsApp
+=======
+                  {(() => { const qty = selectedItems.reduce((t, i) => t + i.quantity, 0); return `Order ${qty} ${qty === 1 ? 'item' : 'items'} on WhatsApp 📱`; })()}
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
                 </motion.button>
               </motion.div>
             )}

@@ -3,8 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StructuredData from '@/components/StructuredData';
 import BackToTop from '@/components/BackToTop';
+<<<<<<< HEAD
 
 const inter = Inter({ 
+=======
+import { SITE_URL } from '@/lib/config';
+
+const inter = Inter({
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
   subsets: ["latin"],
   display: 'swap',
   preload: true,
@@ -32,7 +38,11 @@ export const metadata: Metadata = {
     "FSSAI registered bakery", "Hyderabad bakery", "Nallagandla bakery",
     "fresh baked goods", "homemade cakes", "bakery delivery"
   ],
+<<<<<<< HEAD
   authors: [{ name: "Love, Amy's Bakery", url: "https://loveamys.netlify.app" }],
+=======
+  authors: [{ name: "Love, Amy's Bakery", url: SITE_URL }],
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
   creator: "Love, Amy's Bakery",
   publisher: "Love, Amy's Bakery",
   category: "Food & Beverage",
@@ -42,14 +52,22 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+<<<<<<< HEAD
   metadataBase: new URL('https://loveamys.netlify.app'),
+=======
+  metadataBase: new URL(SITE_URL),
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "Love, Amy's Bakery | Home Bakery in Nallagandla, Hyderabad",
     description: "Best home bakery in Nallagandla, Hyderabad. Fresh cakes, pastries, bread, and desserts made with love. Free delivery above ₹1000. FSSAI registered bakery.",
+<<<<<<< HEAD
     url: 'https://loveamys.netlify.app',
+=======
+    url: SITE_URL,
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
     siteName: "Love, Amy's Bakery",
     images: [
       {
@@ -88,11 +106,19 @@ export const metadata: Metadata = {
   // verification: { google: 'paste-your-code-here-from-search-console' },
   icons: {
     icon: [
+<<<<<<< HEAD
       { url: '/favicon.ico', sizes: '32x32' },
       { url: '/images/loveamys-logo.png', sizes: '1000x680' }
     ],
     apple: [
       { url: '/images/loveamys-logo.png', sizes: '1000x680' }
+=======
+      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+      { url: '/icon-heart.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/icon-heart.png', sizes: '192x192', type: 'image/png' },
+>>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
     ],
     shortcut: '/favicon.ico',
   },
