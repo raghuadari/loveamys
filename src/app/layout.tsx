@@ -20,10 +20,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Love, Amy's Bakery | Home Bakery in Nallagandla, Hyderabad | Fresh Cakes & Pastries",
+    default: "Love, Amy's Bakery | Home Bakery in Nallagandla, Hyderabad",
     template: "%s | Love, Amy's Bakery"
   },
-  description: "Best home bakery in Nallagandla, Hyderabad. Fresh cakes, pastries, bread, and desserts made with love. Free delivery above ₹1000. Order custom cakes, cheesecakes, bombolinis, and more. Located in Aparna Cyberzon, Nallagandla.",
+  description: "Best home bakery in Nallagandla, Hyderabad. Custom cakes, cheesecakes, Korean buns & pastries, baked fresh to order. Free delivery above ₹1000. Order on WhatsApp.",
   keywords: [
     "home bakery", "Nallagandla", "Hyderabad", "custom cakes", "fresh pastries", 
     "bread", "desserts", "cheesecake", "bombolinis", "Korean cheese buns", 
@@ -53,18 +53,11 @@ export const metadata: Metadata = {
     siteName: "Love, Amy's Bakery",
     images: [
       {
-        url: '/images/loveamys-logo.png',
-        width: 1000,
-        height: 680,
-        alt: "Love, Amy's Bakery Logo",
-        type: 'image/png',
-      },
-      {
-        url: '/images/amy-ghibli.png',
-        width: 220,
-        height: 180,
-        alt: "Amy's Ghibli Picture",
-        type: 'image/png',
+        url: '/images/gallery/chocolate cake.JPG',
+        width: 1200,
+        height: 630,
+        alt: "Fresh chocolate cake from Love Amy's Bakery, Nallagandla Hyderabad",
+        type: 'image/jpeg',
       }
     ],
     locale: 'en_IN',
@@ -75,7 +68,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Love, Amy's Bakery | Home Bakery in Nallagandla, Hyderabad",
     description: "Best home bakery in Nallagandla, Hyderabad. Fresh cakes, pastries, bread, and desserts made with love. Free delivery above ₹1000.",
-    images: ['/images/loveamys-logo.png'],
+    images: ['/images/gallery/chocolate cake.JPG'],
     creator: '@loveamysbakes',
     site: '@loveamysbakes',
   },
@@ -92,11 +85,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-    yandex: 'your-yandex-verification-code',
-    yahoo: 'your-yahoo-verification-code',
-  },
+  // verification: { google: 'paste-your-code-here-from-search-console' },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '32x32' },

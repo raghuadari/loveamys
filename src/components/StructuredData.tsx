@@ -11,10 +11,10 @@ export default function StructuredData() {
         "description": "Best home bakery in Nallagandla, Hyderabad. Fresh cakes, pastries, bread, and desserts made with love. Free delivery above ₹1000.",
         "url": "https://loveamys.netlify.app",
         "telephone": "+91-9059888990",
-        "email": "contact@loveamys.com",
+        "email": "loveamys.bakes@gmail.com",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Aparna Cyberzon",
+          "streetAddress": "Shop no 8, M Block Basement, Aparna Cyberzon",
           "addressLocality": "Nallagandla",
           "addressRegion": "Hyderabad",
           "addressCountry": "IN",
@@ -28,11 +28,18 @@ export default function StructuredData() {
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "opens": "09:00",
-            "closes": "20:00"
+            "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "11:00",
+            "closes": "17:00"
           }
         ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
         "priceRange": "₹₹",
         "paymentAccepted": ["Cash", "UPI", "Bank Transfer"],
         "currenciesAccepted": "INR",
@@ -210,8 +217,8 @@ export default function StructuredData() {
         "logo": {
           "@type": "ImageObject",
           "url": "https://loveamys.netlify.app/images/loveamys-logo.png",
-          "width": 300,
-          "height": 100
+          "width": 1000,
+          "height": 680
         },
         "sameAs": [
           "https://instagram.com/loveamys.bakes",
