@@ -63,19 +63,19 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-pink-50">
+    <section id="testimonials" className="py-20 bg-brand-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0 }}
           className="text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-deep mb-8">
             What Our Customers Say
           </h2>
-          <p className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
+          <p className="text-lg text-brand-dark mb-12 max-w-3xl mx-auto">
             Don't just take our word for it - hear what our happy customers have to say about their experience with Love Amy's Bakery.
           </p>
 
@@ -91,21 +91,21 @@ export default function TestimonialsSection() {
                 className="bg-white rounded-2xl shadow-xl p-8 md:p-12"
               >
                 <div className="flex flex-col items-center">
-                  <div className="w-20 h-20 rounded-full bg-pink-100 flex items-center justify-center text-2xl mb-6">
-                    👤
+                  <div className="w-20 h-20 rounded-full bg-brand-gold flex items-center justify-center text-3xl font-bold text-white mb-6 select-none">
+                    {testimonials[activeIndex].name.charAt(0)}
                   </div>
                   <div className="flex items-center mb-4">
                     {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
                       <span key={i} className="text-yellow-400 text-2xl">★</span>
                     ))}
                   </div>
-                  <blockquote className="text-xl text-gray-600 mb-6">
+                  <blockquote className="text-xl text-brand-dark mb-6">
                     "{testimonials[activeIndex].text}"
                   </blockquote>
                   <div className="text-center">
-                    <p className="font-semibold text-gray-900">{testimonials[activeIndex].name}</p>
-                    <p className="text-gray-600">{testimonials[activeIndex].role}</p>
-                    <p className="text-sm text-gray-500 mt-2">{testimonials[activeIndex].date}</p>
+                    <p className="font-semibold text-brand-deep">{testimonials[activeIndex].name}</p>
+                    <p className="text-brand-dark">{testimonials[activeIndex].role}</p>
+                    <p className="text-sm text-brand-gold mt-2">{testimonials[activeIndex].date}</p>
                   </div>
                 </div>
               </motion.div>
@@ -114,13 +114,13 @@ export default function TestimonialsSection() {
             {/* Navigation Buttons */}
             <button
               onClick={prevTestimonial}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white rounded-full p-2 shadow-lg hover:bg-pink-50 transition-colors"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white rounded-full p-2 shadow-lg hover:bg-brand-cream transition-colors"
             >
               ←
             </button>
             <button
               onClick={nextTestimonial}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white rounded-full p-2 shadow-lg hover:bg-pink-50 transition-colors"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white rounded-full p-2 shadow-lg hover:bg-brand-cream transition-colors"
             >
               →
             </button>
@@ -132,7 +132,7 @@ export default function TestimonialsSection() {
                   key={index}
                   onClick={() => setActiveIndex(index)}
                   className={`w-3 h-3 rounded-full transition-colors ${
-                    index === activeIndex ? 'bg-pink-600' : 'bg-gray-300'
+                    index === activeIndex ? 'bg-brand-primary' : 'bg-gray-300'
                   }`}
                 />
               ))}
@@ -142,4 +142,4 @@ export default function TestimonialsSection() {
       </div>
     </section>
   );
-} 
+}

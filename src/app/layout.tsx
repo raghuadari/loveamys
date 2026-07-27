@@ -14,7 +14,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#ec4899',
+  themeColor: '#A07850',
   colorScheme: 'light',
 };
 
@@ -54,8 +54,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/loveamys-logo.png',
-        width: 300,
-        height: 100,
+        width: 1000,
+        height: 680,
         alt: "Love, Amy's Bakery Logo",
         type: 'image/png',
       },
@@ -100,10 +100,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '32x32' },
-      { url: '/images/loveamys-logo.png', sizes: '300x100' }
+      { url: '/images/loveamys-logo.png', sizes: '1000x680' }
     ],
     apple: [
-      { url: '/images/loveamys-logo.png', sizes: '300x100' }
+      { url: '/images/loveamys-logo.png', sizes: '1000x680' }
     ],
     shortcut: '/favicon.ico',
   },
@@ -125,8 +125,8 @@ export const metadata: Metadata = {
     'apple-mobile-web-app-status-bar-style': 'default',
     'apple-mobile-web-app-title': "Love, Amy's Bakery",
     'application-name': "Love, Amy's Bakery",
-    'msapplication-TileColor': '#ec4899',
-    'theme-color': '#ec4899',
+    'msapplication-TileColor': '#A07850',
+    'theme-color': '#A07850',
   },
 };
 

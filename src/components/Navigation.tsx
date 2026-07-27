@@ -11,11 +11,10 @@ export default function Navigation() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      
-      // Update active section based on scroll position
+
       const sections = ['home', 'about', 'gallery', 'menu', 'testimonials'];
       const scrollPosition = window.scrollY + 100;
-      
+
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
         if (section && section.offsetTop <= scrollPosition) {
@@ -40,10 +39,7 @@ export default function Navigation() {
   const handleSmoothScroll = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     setIsMobileMenuOpen(false);
   };
@@ -69,14 +65,11 @@ export default function Navigation() {
           <motion.a
             href="#home"
             className={`text-2xl font-bold transition-colors ${
-              isScrolled ? 'text-pink-600' : 'text-white'
+              isScrolled ? 'text-brand-primary' : 'text-brand-deep'
             }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={(e: React.MouseEvent) => {
-              e.preventDefault();
-              handleSmoothScroll('#home');
-            }}
+            onClick={(e: React.MouseEvent) => { e.preventDefault(); handleSmoothScroll('#home'); }}
             onKeyDown={(e: React.KeyboardEvent) => handleKeyDown(e, '#home')}
             tabIndex={0}
             role="button"
@@ -92,20 +85,17 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 className={`text-lg font-medium transition-all duration-200 relative ${
-                  isScrolled 
-                    ? activeSection === link.id 
-                      ? 'text-pink-600' 
-                      : 'text-gray-900 hover:text-pink-600'
-                    : activeSection === link.id 
-                      ? 'text-pink-200' 
-                      : 'text-white hover:text-pink-200'
+                  isScrolled
+                    ? activeSection === link.id
+                      ? 'text-brand-primary'
+                      : 'text-gray-900 hover:text-brand-primary'
+                    : activeSection === link.id
+                      ? 'text-brand-primary'
+                      : 'text-brand-dark hover:text-brand-primary'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={(e: React.MouseEvent) => {
-                  e.preventDefault();
-                  handleSmoothScroll(link.href);
-                }}
+                onClick={(e: React.MouseEvent) => { e.preventDefault(); handleSmoothScroll(link.href); }}
                 onKeyDown={(e: React.KeyboardEvent) => handleKeyDown(e, link.href)}
                 tabIndex={0}
                 role="menuitem"
@@ -114,7 +104,7 @@ export default function Navigation() {
                 {link.label}
                 {activeSection === link.id && (
                   <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-pink-600"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary"
                     layoutId="activeTab"
                     initial={false}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
@@ -127,7 +117,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <motion.button
             className={`md:hidden text-2xl p-2 rounded-lg transition-colors ${
-              isScrolled ? 'text-gray-900 hover:bg-gray-100' : 'text-white hover:bg-white/10'
+              isScrolled ? 'text-gray-900 hover:bg-brand-light' : 'text-brand-dark hover:bg-brand-light'
             }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileHover={{ scale: 1.1 }}
@@ -160,14 +150,11 @@ export default function Navigation() {
                   href={link.href}
                   className={`block text-lg font-medium py-3 px-4 rounded-lg transition-colors ${
                     activeSection === link.id
-                      ? 'text-pink-600 bg-pink-50'
-                      : 'text-gray-900 hover:text-pink-600 hover:bg-gray-50'
+                      ? 'text-brand-primary bg-brand-cream'
+                      : 'text-gray-900 hover:text-brand-primary hover:bg-brand-light'
                   }`}
                   whileHover={{ x: 10 }}
-                  onClick={(e: React.MouseEvent) => {
-                    e.preventDefault();
-                    handleSmoothScroll(link.href);
-                  }}
+                  onClick={(e: React.MouseEvent) => { e.preventDefault(); handleSmoothScroll(link.href); }}
                   onKeyDown={(e: React.KeyboardEvent) => handleKeyDown(e, link.href)}
                   tabIndex={0}
                   role="menuitem"
@@ -182,4 +169,4 @@ export default function Navigation() {
       </AnimatePresence>
     </nav>
   );
-} 
+}

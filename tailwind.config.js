@@ -8,20 +8,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#fdf2f8',
-          100: '#fce7f3',
-          200: '#fbcfe8',
-          300: '#f9a8d4',
-          400: '#f472b6',
-          500: '#ec4899',
-          600: '#db2777',
-          700: '#be185d',
-          800: '#9d174d',
-          900: '#831843',
+        brand: {
+          cream:   '#FAF5EF', // warm off-white background
+          light:   '#F0E8DC', // soft warm hover / badge backgrounds
+          gold:    '#C9A882', // accent / separator / muted highlights
+          primary: '#A07850', // main brand brown (buttons, active states)
+          dark:    '#7A5C3E', // darker brown (hover states, secondary text)
+          deep:    '#4A352D', // deep cocoa (headings, strong text)
         },
       },
     },
   },
   plugins: [],
-} 
+}
