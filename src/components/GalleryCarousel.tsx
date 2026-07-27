@@ -4,8 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { FaPause, FaPlay } from 'react-icons/fa';
-<<<<<<< HEAD
-=======
 import type { ComponentType } from 'react';
 
 type FaIcon = ComponentType<{ className?: string }>;
@@ -14,7 +12,6 @@ const PlayIcon  = FaPlay  as FaIcon;
 
 const CARD_WIDTH = 320;
 const CARD_GAP = 24;
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
 
 const galleryImages = [
   { id: 1,  src: '/images/gallery/vanilla cake.JPG',             alt: 'Vanilla Cake' },
@@ -48,25 +45,13 @@ export default function GalleryCarousel() {
   const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-<<<<<<< HEAD
-  const [isLoading, setIsLoading] = useState(true);
-=======
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
   const carouselRef = useRef<HTMLDivElement>(null);
   const autoPlayInterval = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (isAutoPlaying && !selectedImage) {
       autoPlayInterval.current = setInterval(() => {
-<<<<<<< HEAD
-        setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
-        scrollToImage((currentIndex + 1) % galleryImages.length);
-      }, 3000);
-    }
-    return () => { if (autoPlayInterval.current) clearInterval(autoPlayInterval.current); };
-  }, [isAutoPlaying, selectedImage, currentIndex, galleryImages.length]);
-=======
         setCurrentIndex((prev) => {
           const next = (prev + 1) % galleryImages.length;
           scrollToImage(next);
@@ -76,7 +61,6 @@ export default function GalleryCarousel() {
     }
     return () => { if (autoPlayInterval.current) clearInterval(autoPlayInterval.current); };
   }, [isAutoPlaying, selectedImage]);
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
@@ -94,19 +78,11 @@ export default function GalleryCarousel() {
     };
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-<<<<<<< HEAD
-  }, [selectedImage, galleryImages]);
-
-  const scrollToImage = (index: number) => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollTo({ left: index * (320 + 24), behavior: 'smooth' });
-=======
   }, [selectedImage]);
 
   const scrollToImage = (index: number) => {
     if (carouselRef.current) {
       carouselRef.current.scrollTo({ left: index * (CARD_WIDTH + CARD_GAP), behavior: 'smooth' });
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
     }
   };
 
@@ -140,11 +116,7 @@ export default function GalleryCarousel() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-brand-deep mb-4">
-<<<<<<< HEAD
-            Our Creations
-=======
             Fresh Out of the Oven
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
           </h2>
 
           {/* Auto-play toggle + counter */}
@@ -157,21 +129,13 @@ export default function GalleryCarousel() {
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
-<<<<<<< HEAD
-              {isAutoPlaying ? <FaPause className="w-3 h-3" /> : <FaPlay className="w-3 h-3" />}
-=======
               {isAutoPlaying ? <PauseIcon className="w-3 h-3" /> : <PlayIcon className="w-3 h-3" />}
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
               {isAutoPlaying ? 'Pause' : 'Play'}
             </button>
 
             {/* Compact progress: prev dots + counter + next dots */}
             <div className="flex items-center gap-2">
               {[-2, -1, 0, 1, 2].map((offset) => {
-<<<<<<< HEAD
-                const idx = (currentIndex + offset + galleryImages.length) % galleryImages.length;
-=======
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
                 const isActive = offset === 0;
                 return (
                   <div
@@ -213,11 +177,7 @@ export default function GalleryCarousel() {
             className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
             onScroll={(e: React.UIEvent<HTMLDivElement>) => {
               const scrollLeft = (e.target as HTMLDivElement).scrollLeft;
-<<<<<<< HEAD
-              setCurrentIndex(Math.round(scrollLeft / (320 + 24)));
-=======
               setCurrentIndex(Math.round(scrollLeft / (CARD_WIDTH + CARD_GAP)));
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
             }}
           >
             {galleryImages.map((image, index) => (
@@ -227,22 +187,13 @@ export default function GalleryCarousel() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
                 viewport={{ once: true, amount: 0 }}
-<<<<<<< HEAD
-                className="flex-shrink-0 w-80 h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 snap-start cursor-pointer hover:scale-105"
-=======
                 className="relative flex-shrink-0 w-80 h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 snap-start cursor-pointer hover:scale-105"
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
                 onClick={() => handleImageClick(image)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-<<<<<<< HEAD
-                {isLoading && (
-                  <div className="w-full h-full bg-brand-light animate-pulse flex items-center justify-center">
-=======
                 {!loadedImages.has(image.id) && (
                   <div className="absolute inset-0 bg-brand-light animate-pulse flex items-center justify-center">
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
                     <div className="text-brand-gold">Loading...</div>
                   </div>
                 )}
@@ -252,11 +203,7 @@ export default function GalleryCarousel() {
                   width={320}
                   height={320}
                   className="w-full h-full object-cover"
-<<<<<<< HEAD
-                  onLoad={() => setIsLoading(false)}
-=======
                   onLoad={() => setLoadedImages(prev => new Set(prev).add(image.id))}
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
                   loading="lazy"
                   placeholder="blur"
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
@@ -274,11 +221,7 @@ export default function GalleryCarousel() {
           className="text-center mt-8"
         >
           <p className="text-brand-gold text-sm">
-<<<<<<< HEAD
-            ← Scroll or use arrows to navigate • Click to zoom →
-=======
             Click any photo to zoom in
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
           </p>
         </motion.div>
       </div>

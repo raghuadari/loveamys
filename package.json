@@ -6,13 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-<<<<<<< HEAD
-    "lint": "next lint",
-    "predeploy": "next build",
-    "deploy": "touch out/.nojekyll && gh-pages -d out"
-=======
     "lint": "next lint"
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
@@ -30,10 +24,6 @@
     "autoprefixer": "^10.4.18",
     "eslint": "^8",
     "eslint-config-next": "14.2.29",
-<<<<<<< HEAD
-    "gh-pages": "^6.3.0",
-=======
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"

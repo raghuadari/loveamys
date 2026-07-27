@@ -1,10 +1,6 @@
 'use client';
 
-<<<<<<< HEAD
-import { motion } from 'framer-motion';
-=======
 import { motion, AnimatePresence } from 'framer-motion';
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
 import { useState } from 'react';
 
 const testimonials = [
@@ -80,20 +76,13 @@ export default function TestimonialsSection() {
             What Our Customers Say
           </h2>
           <p className="text-lg text-brand-dark mb-12 max-w-3xl mx-auto">
-<<<<<<< HEAD
-            Don't just take our word for it - hear what our happy customers have to say about their experience with Love Amy's Bakery.
-=======
             Our customers say it better than we could. ❤️
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
           </p>
 
           {/* Testimonials Carousel */}
           <div className="relative max-w-4xl mx-auto">
             <div className="overflow-hidden">
-<<<<<<< HEAD
-=======
               <AnimatePresence mode="wait">
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
               <motion.div
                 key={activeIndex}
                 initial={{ opacity: 0, x: 100 }}
@@ -121,51 +110,35 @@ export default function TestimonialsSection() {
                   </div>
                 </div>
               </motion.div>
-<<<<<<< HEAD
-=======
               </AnimatePresence>
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
             </div>
 
             {/* Navigation Buttons */}
             <button
               onClick={prevTestimonial}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white rounded-full p-2 shadow-lg hover:bg-brand-cream transition-colors"
-<<<<<<< HEAD
-=======
               aria-label="Previous testimonial"
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
             >
               ←
             </button>
             <button
               onClick={nextTestimonial}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white rounded-full p-2 shadow-lg hover:bg-brand-cream transition-colors"
-<<<<<<< HEAD
-=======
               aria-label="Next testimonial"
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
             >
               →
             </button>
 
             {/* Dots */}
             <div className="flex justify-center mt-8 gap-2">
-<<<<<<< HEAD
-              {testimonials.map((_, index) => (
-=======
               {testimonials.map((t, index) => (
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
                 <button
                   key={index}
                   onClick={() => setActiveIndex(index)}
                   className={`w-3 h-3 rounded-full transition-colors ${
                     index === activeIndex ? 'bg-brand-primary' : 'bg-gray-300'
                   }`}
-<<<<<<< HEAD
-=======
                   aria-label={`Go to testimonial ${index + 1} — ${t.name}`}
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
                 />
               ))}
             </div>

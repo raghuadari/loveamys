@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-<<<<<<< HEAD
-=======
 import Image from 'next/image';
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,11 +25,7 @@ export default function Navigation() {
       }
     };
 
-<<<<<<< HEAD
-    window.addEventListener('scroll', handleScroll);
-=======
     window.addEventListener('scroll', handleScroll, { passive: true });
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -41,11 +34,7 @@ export default function Navigation() {
     { href: '#about', label: 'About', id: 'about' },
     { href: '#gallery', label: 'Gallery', id: 'gallery' },
     { href: '#menu', label: 'Menu', id: 'menu' },
-<<<<<<< HEAD
-    { href: '#testimonials', label: 'Testimonials', id: 'testimonials' }
-=======
     { href: '#testimonials', label: 'Reviews', id: 'testimonials' }
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
   ];
 
   const handleSmoothScroll = (href: string) => {
@@ -73,30 +62,15 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-<<<<<<< HEAD
-          {/* Brand Name */}
-          <motion.a
-            href="#home"
-            className={`text-2xl font-bold transition-colors ${
-              isScrolled ? 'text-brand-primary' : 'text-brand-deep'
-            }`}
-=======
           {/* Brand Logo */}
           <motion.a
             href="#home"
             className="flex items-center gap-2"
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e: React.MouseEvent) => { e.preventDefault(); handleSmoothScroll('#home'); }}
             onKeyDown={(e: React.KeyboardEvent) => handleKeyDown(e, '#home')}
             tabIndex={0}
-<<<<<<< HEAD
-            role="button"
-            aria-label="Go to home section"
-          >
-            Love, Amy's
-=======
             aria-label="Go to home section"
           >
             <Image
@@ -112,7 +86,6 @@ export default function Navigation() {
             }`}>
               Love, Amy's
             </span>
->>>>>>> 97d1e2c (refactor: tech debt cleanup — server components, single source of truth (business.ts, config.ts, data/menu.ts), dead file removal, aria labels, magic number constants)
           </motion.a>
 
           {/* Desktop Navigation */}
